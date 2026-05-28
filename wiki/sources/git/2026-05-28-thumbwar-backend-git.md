@@ -1,0 +1,219 @@
+---
+type: source
+created: 2026-05-28
+updated: 2026-05-28
+related: []
+sources: []
+source_system: git
+project: thumbwar-backend
+---
+
+# git history — thumbwar-backend (2026-05-28)
+
+- Repo: `/Users/cody/workspace/thumbwar/backend`
+- HEAD: `54a8e8008d2283afc58d9fef00859277b703b36a`
+- Total commits on HEAD: 497
+- New commits since last ingest (first run): 497
+- Merged PRs: 20 recent merged PR(s) in gunnertech/thumbwar-backend; latest #161 "chore: update @codyswann/lisa to 2.62.1"
+
+## New commits
+- 54a8e80 · 2026-05-25 · chore(release): 1.0.61 [skip ci]
+- 7b2a508 · 2026-05-25 · Merge pull request #161 from gunnertech/chore/lisa-update-2.62.1
+- bc4138d · 2026-05-25 · chore: update @codyswann/lisa to 2.62.1
+- b0cc860 · 2026-05-25 · chore(release): 1.0.60 [skip ci]
+- b31750d · 2026-05-24 · Merge pull request #160 from gunnertech/chore/lisa-update-2026-05-24
+- c682fb8 · 2026-05-24 · chore: update @codyswann/lisa to 2.59.0 and apply templates
+- 312dabc · 2026-05-24 · chore(release): 1.0.59 [skip ci]
+- 95b185c · 2026-05-24 · chore: remove nightly Jira triage workflow (#159)
+- a22e8a1 · 2026-05-22 · chore(release): 1.0.58 [skip ci]
+- 6e2b06e · 2026-05-22 · chore: update @codyswann/lisa to 2.23.1 (#158)
+- 0506074 · 2026-05-21 · chore(release): 1.0.57 [skip ci]
+- 2b6e3cf · 2026-05-21 · chore: update @codyswann/lisa to 2.19.0 (#157)
+- a1e260d · 2026-05-13 · chore(release): 1.0.56 [skip ci]
+- 7750456 · 2026-05-13 · chore(lisa): update @codyswann/lisa to latest (#156)
+- c0d8661 · 2026-05-12 · chore(release): 1.0.55 [skip ci]
+- b15781b · 2026-05-12 · chore: update @codyswann/lisa to 2.16.0 and apply templates (#155)
+- e6347fe · 2026-05-07 · chore(release): 1.0.54 [skip ci]
+- a90fc78 · 2026-05-07 · chore: update @codyswann/lisa to 2.15.0 (#154)
+- 450eaac · 2026-04-29 · chore(release): 1.0.53 [skip ci]
+- a1f6299 · 2026-04-29 · chore: update @codyswann/lisa to 2.8.3 (#153)
+- f811590 · 2026-04-29 · chore(release): 1.0.52 [skip ci]
+- 097a289 · 2026-04-29 · chore: upgrade @codyswann/lisa to 2.8.2 (#152)
+- 3d1c740 · 2026-04-29 · chore(release): 1.0.51 [skip ci]
+- 9737bd8 · 2026-04-29 · chore: upgrade @codyswann/lisa to 2.8.0 (#151)
+- e8db5b5 · 2026-04-27 · chore(release): 1.0.50 [skip ci]
+- 4d1e44d · 2026-04-27 · chore: update @codyswann/lisa to 2.6.0 (#150)
+- 23356c5 · 2026-04-27 · chore(release): 1.0.49 [skip ci]
+- 71d3783 · 2026-04-27 · chore(deps): upgrade typescript to ^6.0.3 (#148)
+- c60d132 · 2026-04-26 · chore(release): 1.0.48 [skip ci]
+- b542738 · 2026-04-26 · chore: lisa update 2026-04-26 -> 2.1.0 (#147)
+- c04b749 · 2026-04-26 · chore(release): 1.0.47 [skip ci]
+- 7c807d4 · 2026-04-25 · chore(lisa): bump to @codyswann/lisa@1.95.0 (#146)
+- a971485 · 2026-04-23 · chore(release): 1.0.46 [skip ci]
+- 963ca71 · 2026-04-23 · chore(lisa): update to @codyswann/lisa@1.92.0 (#145)
+- 2e736df · 2026-04-19 · chore(release): 1.0.45 [skip ci]
+- ab19088 · 2026-04-19 · chore(lisa): update to @codyswann/lisa@1.90.0 (#144)
+- f93dbb8 · 2026-04-14 · chore(release): 1.0.44 [skip ci]
+- 6240915 · 2026-04-14 · chore(deps): bump @codyswann/lisa to 1.86.3 (#143)
+- 41cd97e · 2026-04-14 · chore(release): 1.0.43 [skip ci]
+- 44c82c9 · 2026-04-14 · chore(deps): bump @codyswann/lisa to 1.86.2 (#142)
+- 0000649 · 2026-04-14 · chore(release): 1.0.42 [skip ci]
+- f1ca42b · 2026-04-14 · chore: update @codyswann/lisa to 1.86.1 (#141)
+- 5048b54 · 2026-04-13 · chore(release): 1.0.41 [skip ci]
+- 2328a93 · 2026-04-13 · chore: update @codyswann/lisa to 1.85.7 (v7 rollout) (#140)
+- 4e6ebcb · 2026-04-13 · chore(release): 1.0.40 [skip ci]
+- b02498f · 2026-04-13 · chore: update @codyswann/lisa to 1.85.6 (v6 rollout) (#139)
+- 3518983 · 2026-04-12 · chore(release): 1.0.39 [skip ci]
+- 2e1bb92 · 2026-04-12 · chore: update @codyswann/lisa to 1.85.3 (v4 rollout) (#136)
+- 29e72e2 · 2026-04-12 · chore(release): 1.0.38 [skip ci]
+- 67d906a · 2026-04-12 · chore: update @codyswann/lisa to 1.85.1 (#135)
+- e494625 · 2026-04-12 · chore(release): 1.0.37 [skip ci]
+- ade2b46 · 2026-04-12 · chore: update @codyswann/lisa to 1.83.1 (#134)
+- 0221ffc · 2026-04-11 · chore(release): 1.0.36 [skip ci]
+- 82f4325 · 2026-04-11 · chore: update @codyswann/lisa to latest (#133)
+- 2e35c84 · 2026-04-09 · chore(release): 1.0.35 [skip ci]
+- 888de9a · 2026-04-09 · chore: lisa update 2026-04-09 (#132)
+- d32e02f · 2026-04-08 · chore(release): 1.0.34 [skip ci]
+- f22eab4 · 2026-04-08 · chore: update @codyswann/lisa to 1.81.0 (#131)
+- e146438 · 2026-04-07 · chore(release): 1.0.33 [skip ci]
+- 3825fc6 · 2026-04-07 · chore: update @codyswann/lisa to latest (#130)
+- 6cba5aa · 2026-04-05 · chore(release): 1.0.32 [skip ci]
+- 983ccc1 · 2026-04-05 · chore: update @codyswann/lisa to 1.78.3 (#129)
+- 343b3ae · 2026-04-03 · chore(release): 1.0.31 [skip ci]
+- 1eefd6f · 2026-04-03 · test: increase test coverage thresholds: branches 88% -> 90%, functions 87% -> 90% (#128)
+- 9cd75f0 · 2026-04-02 · chore(release): 1.0.30 [skip ci]
+- c70ef66 · 2026-04-02 · test: increase test coverage thresholds: statements 87→90%, branches 83→88%, functions 82→87%, lines 87→90% (#119)
+- d2141cf · 2026-04-02 · test: increase test coverage: statements 87->90%, branches 83->88%, functions 82->87%, lines 87->90% (#121)
+- cbffda9 · 2026-04-02 · test: increase test coverage thresholds (#118)
+- d53bbca · 2026-03-25 · chore(release): 1.0.29 [skip ci]
+- 0eecbfd · 2026-03-25 · chore: update @codyswann/lisa to 1.74.0 (#117)
+- 8d75c41 · 2026-03-24 · chore(release): 1.0.28 [skip ci]
+- 5597361 · 2026-03-24 · chore: update lisa to 1.71.5 (#116)
+- d4e0e35 · 2026-03-21 · chore(release): 1.0.27 [skip ci]
+- 353ec6b · 2026-03-20 · chore: update lisa to latest (#115)
+- 4fe3309 · 2026-03-20 · chore(release): 1.0.26 [skip ci]
+- d44e29b · 2026-03-20 · chore: increase test coverage thresholds (#114)
+- f1e49f8 · 2026-03-19 · chore(release): 1.0.25 [skip ci]
+- 83f003b · 2026-03-19 · test: improve robustness of configuration, database, and connect handler tests (#110)
+- 91ea58e · 2026-03-19 · chore(release): 1.0.24 [skip ci]
+- 1fa0e12 · 2026-03-19 · Increase test coverage: statements 77% -> 82%, branches 73% -> 78%, functions 72% -> 77%, lines 77% -> 82% (#111)
+- 6d8e7d6 · 2026-03-19 · chore(release): 1.0.23 [skip ci]
+- 5245545 · 2026-03-19 · refactor: reduce maxLinesPerFunction threshold from 35 to 30 (#112)
+- 9354401 · 2026-03-19 · chore(release): 1.0.22 [skip ci]
+- d0deb4b · 2026-03-19 · chore: update @codyswann/lisa (#113)
+- f038a3e · 2026-03-18 · chore(release): 1.0.21 [skip ci]
+- f924c76 · 2026-03-18 · Merge pull request #108 from gunnertech/refactor/reduce-max-lines-per-function-35
+- 4f0f09e · 2026-03-18 · fix(deps): tighten fast-xml-parser override to >=5.5.6 to resolve GHSA-8gc5-j5rx-235r
+- c1b1cc0 · 2026-03-18 · refactor: reduce maxLinesPerFunction threshold from 40 to 35
+- 657ed81 · 2026-03-17 · chore(release): 1.0.20 [skip ci]
+- 61526b9 · 2026-03-17 · Merge pull request #105 from gunnertech/test/improve-ws-authorizer-coverage
+- ea09b95 · 2026-03-17 · Merge branch 'main' into test/improve-ws-authorizer-coverage
+- be2245c · 2026-03-17 · chore(release): 1.0.19 [skip ci]
+- 736ee2a · 2026-03-17 · Merge branch 'main' into test/improve-ws-authorizer-coverage
+- 747f9fd · 2026-03-17 · Merge pull request #106 from gunnertech/feat/increase-coverage-thresholds
+- cdccf53 · 2026-03-17 · Merge branch 'main' into feat/increase-coverage-thresholds
+- 068efa5 · 2026-03-17 · Merge branch 'main' into test/improve-ws-authorizer-coverage
+- 7ae324e · 2026-03-17 · chore(release): 1.0.18 [skip ci]
+- 7db672d · 2026-03-17 · Merge branch 'main' into test/improve-ws-authorizer-coverage
+- e837d53 · 2026-03-17 · Merge branch 'main' into feat/increase-coverage-thresholds
+- 129a17f · 2026-03-17 · Merge pull request #107 from gunnertech/refactor/reduce-complexity-max-lines-per-function-45-40
+- 45f06bd · 2026-03-17 · refactor: reduce maxLinesPerFunction threshold 45 -> 40
+- d9fff9c · 2026-03-17 · test: increase coverage thresholds to statements 77%, branches 73%, functions 72%, lines 77%
+- f1df9ae · 2026-03-17 · test(websocket): improve ws-authorizer behavioral coverage
+- 8ea54f8 · 2026-03-16 · chore(release): 1.0.17 [skip ci]
+- 6568cc6 · 2026-03-16 · Merge pull request #103 from gunnertech/test/increase-coverage-thresholds
+- 295bdfb · 2026-03-16 · Merge branch 'main' into test/increase-coverage-thresholds
+- 8ce4519 · 2026-03-16 · chore(release): 1.0.16 [skip ci]
+- 161d1cf · 2026-03-16 · Merge pull request #104 from gunnertech/refactor/reduce-code-complexity-max-lines-per-function
+- 0941570 · 2026-03-16 · fix: exclude pre-existing transitive devDep vulnerabilities from audit
+- 9ed8e6d · 2026-03-16 · refactor: reduce code complexity: maxLinesPerFunction 50 -> 45
+- 763b45c · 2026-03-16 · chore: exclude pre-existing transitive dev-dep vulnerabilities from audit
+- c5bb238 · 2026-03-16 · test: increase coverage thresholds to statements 72%, branches 68%, functions 67%, lines 72%
+- 108f135 · 2026-03-13 · chore(release): 1.0.15 [skip ci]
+- 747e122 · 2026-03-13 · Merge pull request #101 from gunnertech/chore/lisa-update-2026-03-12
+- 76d1c11 · 2026-03-13 · chore(release): 1.0.14 [skip ci]
+- ffcfc0a · 2026-03-13 · Merge branch 'main' into chore/lisa-update-2026-03-12
+- dce577a · 2026-03-13 · Merge pull request #102 from gunnertech/refactor/reduce-complexity-max-lines-per-function-50
+- f25c063 · 2026-03-13 · refactor: reduce maxLinesPerFunction threshold 55 -> 50
+- 83a3831 · 2026-03-12 · chore: update @codyswann/lisa to latest
+- 553973a · 2026-03-12 · chore(release): 1.0.13 [skip ci]
+- 0307bea · 2026-03-12 · Merge pull request #99 from gunnertech/chore/lisa-update-2026-03-11
+- d38259b · 2026-03-12 · chore(release): 1.0.12 [skip ci]
+- a8e979c · 2026-03-12 · Merge branch 'main' into chore/lisa-update-2026-03-11
+- 3482244 · 2026-03-12 · Merge pull request #100 from gunnertech/refactor/reduce-complexity-max-lines-55
+- 9320151 · 2026-03-12 · refactor: reduce maxLinesPerFunction threshold from 60 to 55
+- ce92e0e · 2026-03-11 · chore: update @codyswann/lisa to latest
+- c4abe9d · 2026-03-11 · chore(release): 1.0.11 [skip ci]
+- 7f6bc94 · 2026-03-11 · Merge pull request #97 from gunnertech/chore/increase-test-coverage-thresholds
+- a6ab577 · 2026-03-11 · Merge branch 'main' into chore/increase-test-coverage-thresholds
+- 7791c99 · 2026-03-11 · chore(release): 1.0.10 [skip ci]
+- c9b7210 · 2026-03-11 · Merge branch 'main' into chore/increase-test-coverage-thresholds
+- c77082b · 2026-03-11 · Merge pull request #96 from gunnertech/test/improve-default-handler-coverage
+- 20c32b3 · 2026-03-11 · Merge branch 'main' into test/improve-default-handler-coverage
+- e96f8af · 2026-03-11 · Merge branch 'main' into chore/increase-test-coverage-thresholds
+- bdf95df · 2026-03-11 · chore(release): 1.0.9 [skip ci]
+- 44e8c61 · 2026-03-11 · Merge branch 'main' into test/improve-default-handler-coverage
+- a097676 · 2026-03-11 · Merge branch 'main' into chore/increase-test-coverage-thresholds
+- d4d5fd4 · 2026-03-11 · Merge pull request #98 from gunnertech/refactor/reduce-complexity-max-lines-per-function-65-to-60
+- cd6f5a7 · 2026-03-11 · refactor: reduce maxLinesPerFunction threshold from 65 to 60
+- ed4bedd · 2026-03-11 · test: increase coverage thresholds from 62%->67% stmt, 58%->63% branch, 57%->62% fn, 62%->67% lines
+- 8b9e0fd · 2026-03-11 · test(websocket): improve default handler test coverage and robustness
+- 0d117bd · 2026-03-10 · chore(release): 1.0.8 [skip ci]
+- 97a71e9 · 2026-03-10 · Merge pull request #95 from gunnertech/refactor/reduce-max-lines-per-function-65
+- d10d801 · 2026-03-10 · refactor: reduce maxLinesPerFunction threshold from 70 to 65
+- ec7a343 · 2026-03-09 · chore(release): 1.0.7 [skip ci]
+- d220810 · 2026-03-09 · Merge pull request #85 from gunnertech/refactor/reduce-max-lines-per-function-threshold
+- 8298c74 · 2026-03-09 · Merge pull request #93 from gunnertech/fix/eslint-thresholds-json-syntax
+- a63c0d3 · 2026-03-09 · fix(config): restore valid JSON in eslint.thresholds.json
+- 9d25c00 · 2026-03-09 · Merge pull request #78 from gunnertech/chore/increase-coverage-thresholds
+- 5230750 · 2026-03-09 · Merge pull request #79 from gunnertech/refactor/reduce-max-lines-per-function-70
+- 8db80c0 · 2026-03-09 · Merge pull request #91 from gunnertech/test/increase-coverage-thresholds
+- b12ed36 · 2026-03-09 · test: increase coverage thresholds to stmt:62% branch:58% func:57% lines:62%
+- 3693b69 · 2026-03-06 · chore(release): 1.0.6 [skip ci]
+- 23f28f1 · 2026-03-06 · Merge pull request #90 from gunnertech/chore/add-package-manager-to-workflows
+- 94295e8 · 2026-03-06 · fix(ci): add package_manager input to Claude workflow callers
+- 4dbae6b · 2026-03-05 · chore(release): 1.0.5 [skip ci]
+- ba3499d · 2026-03-05 · Merge pull request #89 from gunnertech/chore/lisa-update-2026-03-05
+- 9540788 · 2026-03-05 · fix: remove minimatch override that breaks babel-plugin-istanbul
+- 3df2b21 · 2026-03-05 · fix: resolve high-severity security vulnerabilities
+- a665789 · 2026-03-05 · chore: update @codyswann/lisa to latest
+- cc884f8 · 2026-03-04 · chore(release): 1.0.4 [skip ci]
+- 71c272a · 2026-03-03 · Merge pull request #88 from gunnertech/fix/disable-zap-baseline
+- c795a3b · 2026-03-03 · fix(ci): disable ZAP baseline scan until stabilized
+- 59a9f91 · 2026-03-04 · chore(release): 1.0.3 [skip ci]
+- ec6ca15 · 2026-03-03 · Merge pull request #87 from gunnertech/chore/lisa-update-2026-03-03
+- aef556a · 2026-03-03 · chore: update @codyswann/lisa to 1.54.7
+- 5b01321 · 2026-03-03 · Merge pull request #86 from gunnertech/chore/lisa-update-2026-03-03
+- 026b365 · 2026-03-03 · chore: add audit exclusions for transitive vulnerabilities
+- 6a58d6d · 2026-03-03 · chore: update @codyswann/lisa to latest
+- 1719564 · 2026-03-02 · refactor: reduce maxLinesPerFunction threshold from 75 to 70
+- 9060653 · 2026-02-27 · chore(release): 1.0.2 [skip ci]
+- c839096 · 2026-02-27 · Merge main into chore/increase-coverage-thresholds
+- b3a4982 · 2026-02-27 · Merge main into refactor/reduce-max-lines-per-function-70
+- 6c8130d · 2026-02-27 · Merge pull request #84 from gunnertech/chore/upgrade-lisa
+- 99196eb · 2026-02-27 · chore: upgrade Lisa templates
+- cb81555 · 2026-02-27 · chore: add audit ignore config files from previous Lisa run
+- 19dec01 · 2026-02-26 · chore(release): 1.0.1 [skip ci]
+- cec78e0 · 2026-02-26 · Merge main into refactor/reduce-max-lines-per-function-70
+- ac4a8ad · 2026-02-26 · Merge main into chore/increase-coverage-thresholds
+- 740400b · 2026-02-26 · Merge pull request #83 from gunnertech/chore/upgrade-lisa
+- 4101244 · 2026-02-26 · chore: upgrade lisa templates
+- 076ba71 · 2026-02-26 · Merge pull request #82 from gunnertech/chore/upgrade-lisa
+- adf6b35 · 2026-02-26 · chore: upgrade lisa templates
+- c585165 · 2026-02-26 · Merge main into chore/increase-coverage-thresholds
+- c07ee3a · 2026-02-26 · Merge main into refactor/reduce-max-lines-per-function-70
+- a5f9997 · 2026-02-26 · Merge pull request #81 from gunnertech/chore/upgrade-lisa
+- 3c8927a · 2026-02-26 · chore: upgrade lisa templates
+- 44e7506 · 2026-02-26 · Merge pull request #80 from gunnertech/chore/upgrade-lisa
+- ef52e0c · 2026-02-26 · chore: upgrade lisa
+- a5c538c · 2026-02-26 · refactor: reduce code complexity: maxLinesPerFunction 75 -> 70
+- 4e723d3 · 2026-02-26 · fix: ensure CognitoService region fallback handles empty string from ConfigService
+- 9d19855 · 2026-02-26 · test: increase coverage thresholds to statements 62%, branches 58%, functions 57%, lines 62%
+- 8d2b73c · 2026-02-25 · Merge pull request #77 from gunnertech/chore/upgrade-lisa
+- 25ce4fa · 2026-02-24 · chore: upgrade lisa
+- 23b7900 · 2026-02-24 · chore: add .entire/ to gitignore
+- 92dcf29 · 2026-02-23 · Merge pull request #76 from gunnertech/chore/upgrade-lisa
+- 55ca270 · 2026-02-23 · fix(security): update quality.yml with npm audit GHSA exclusions
+- 7307329 · 2026-02-23 · chore: upgrade Lisa templates
+- c253646 · 2026-02-18 · Merge pull request #75 from gunnertech/chore/upgrade-lisa-1.43.1
+- 7d849be · 2026-02-18 · fix(deps): bump fast-xml-parser resolution to >=5.3.6

@@ -1,0 +1,140 @@
+service: thumbwar-backend
+frameworkVersion: '^4.0.0'
+
+# Configuration for serverless-esbuild community plugin (not native Serverless Framework esbuild).
+# We use this plugin instead of native esbuild for features like custom plugins (esbuild.plugins.js).
+custom:
+  esbuild:
+    bundle: true
+    minify: false
+    sourcemap: true
+    keepNames: true
+    platform: node
+    target: node20
+    plugins: esbuild.plugins.js
+    resolveExtensions:
+      - '.ts'
+      - '.js'
+      - '.mjs'
+    exclude:
+      - '@aws-sdk/*'
+      - 'aws-sdk'
+    # Mark optional peer dependencies as external to prevent bundling errors
+    external:
+      - 'fsevents'
+      - '@nestjs/websockets'
+      - '@nestjs/microservices'
+      - '@apollo/gateway'
+      - '@apollo/subgraph'
+      - '@as-integrations/fastify'
+      - 'ts-morph'
+
+plugins:
+  - serverless-esbuild
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs22.x
+  region: us-east-1
+  tracing:
+    lambda: true
+    apiGateway: true
+  httpApi:
+    cors: true
+  websocketsApiName: ${self:service}-websockets-${sls:stage}
+  websocketsApiRouteSelectionExpression: $request.body.type
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - 'execute-api:ManageConnections'
+          Resource:
+            - 'arn:aws:execute-api:${aws:region}:${aws:accountId}:*/@connections/*'
+        - Effect: Allow
+          Action:
+            - 'xray:PutTraceSegments'
+            - 'xray:PutTelemetryRecords'
+          Resource: '*'
+
+# Production VPC Configuration for Aurora Serverless v2
+# Uncomment and configure when deploying to production
+#
+# provider:
+#   vpc:
+#     securityGroupIds:
+#       - ${ssm:/thumbwar/${self:provider.stage}/vpc/security-group-id}
+#     subnetIds:
+#       - ${ssm:/thumbwar/${self:provider.stage}/vpc/subnet-id-1}
+#       - ${ssm:/thumbwar/${self:provider.stage}/vpc/subnet-id-2}
+#
+# Environment Variables for Aurora (add to provider.environment):
+#   DATABASE_HOST: ${ssm:/thumbwar/${self:provider.stage}/database/host}
+#   DATABASE_PORT: ${ssm:/thumbwar/${self:provider.stage}/database/port}
+#   DATABASE_USER: ${ssm:/thumbwar/${self:provider.stage}/database/user}
+#   DATABASE_PASSWORD: ${ssm:/thumbwar/${self:provider.stage}/database/password~true}
+#   DATABASE_NAME: ${ssm:/thumbwar/${self:provider.stage}/database/name}
+#   DATABASE_SSL: true
+#
+# Note: For production, use RDS Proxy for connection pooling:
+#   DATABASE_HOST should point to RDS Proxy endpoint
+#   Configure IAM authentication for enhanced security
+
+# Disable native Serverless Framework v4 esbuild - we use serverless-esbuild plugin instead
+# (configured in custom.esbuild above) for more control and custom plugin support.
+build:
+  esbuild: false
+
+package:
+  patterns:
+    - '!src/**/*.spec.ts'
+    - '!src/**/*.test.ts'
+    - '!src/**/*.d.ts'
+    - '!**/*.js.map'
+
+functions:
+  main:
+    handler: src/main.handler
+    timeout: 29
+    memorySize: 1024
+    events:
+      - httpApi:
+          method: any
+          path: /{proxy+}
+      - httpApi:
+          method: GET
+          path: /health
+
+  wsConnect:
+    handler: src/websocket/handlers/index.connect
+    timeout: 10
+    memorySize: 256
+    events:
+      - websocket:
+          route: $connect
+          authorizer:
+            name: wsAuthorizer
+            identitySource:
+              - route.request.querystring.token
+
+  wsDisconnect:
+    handler: src/websocket/handlers/index.disconnect
+    timeout: 10
+    memorySize: 256
+    events:
+      - websocket:
+          route: $disconnect
+
+  wsDefault:
+    handler: src/websocket/handlers/index.defaultHandler
+    timeout: 29
+    memorySize: 512
+    events:
+      - websocket:
+          route: $default
+
+  wsAuthorizer:
+    handler: src/websocket/authorizer/index.wsAuthorizer
+    timeout: 10
+    memorySize: 256

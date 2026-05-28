@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "strictPropertyInitialization": false,
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "isolatedModules": true,
+    "lib": ["ES2022"],
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "outDir": "dist",
+    "rootDir": ".",
+    "declarationMap": true,
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    ".serverless",
+    "coverage",
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "eslint.*.ts",
+    "jest.*.ts",
+    "vitest.*.ts",
+    "*.config.ts",
+    "commitlint.config.cjs"
+  ]
+}

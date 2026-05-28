@@ -1,0 +1,10 @@
+# GitGuardian configuration
+# https://docs.gitguardian.com/ggshield-docs/reference/gitguardian-yaml
+
+paths-ignore:
+  # Skill documentation contains example credentials for local development
+  - .claude/skills/**/references/*.md
+  - .claude/skills/**/*.md
+
+  # Project documentation may contain example configs
+  - projects/**/*.md

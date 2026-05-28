@@ -1,0 +1,21 @@
+# Dockerfile for local development
+# Uses Bun runtime with hot reload support via volume mounts in docker-compose.yml
+
+FROM oven/bun:1
+
+WORKDIR /app
+
+# Copy dependency files first for layer caching optimization
+COPY package.json bun.lock ./
+
+# Copy local ESLint plugin (required for bun install)
+COPY eslint-plugin-code-organization ./eslint-plugin-code-organization
+
+RUN bun install
+
+# Copy remaining source files
+COPY . .
+
+EXPOSE 3000
+
+CMD ["bun", "run", "src/main-local.ts"]

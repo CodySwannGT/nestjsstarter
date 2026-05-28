@@ -1,0 +1,17 @@
+{
+  "extends": "@codyswann/lisa/tsconfig/base",
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES2021",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "declaration": true,
+    "sourceMap": true,
+    "outDir": ".build",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", ".build", "dist", "**/*.test.ts", "**/*.spec.ts"]
+}

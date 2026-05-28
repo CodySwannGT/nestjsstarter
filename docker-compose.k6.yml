@@ -1,0 +1,110 @@
+# Docker Compose for K6 Load Testing
+#
+# This file extends the main docker-compose.yml to add k6 load testing services.
+# It can be used standalone or with the main docker-compose.yml.
+#
+# Usage:
+#   # Run smoke test against local server
+#   docker compose -f docker-compose.k6.yml run --rm k6-smoke
+#
+#   # Run load test
+#   docker compose -f docker-compose.k6.yml run --rm k6-load
+#
+#   # Run against custom URL
+#   K6_BASE_URL=https://staging.example.com docker compose -f docker-compose.k6.yml run --rm k6-smoke
+#
+#   # Run with main services (uses shared network)
+#   docker compose -f docker-compose.yml -f docker-compose.k6.yml up -d postgres valkey
+#   docker compose -f docker-compose.yml -f docker-compose.k6.yml run --rm k6-smoke
+#
+#   # Standalone usage creates its own network automatically
+
+services:
+  # Base k6 service configuration (not meant to be run directly)
+  k6-base:
+    image: grafana/k6:latest
+    volumes:
+      - ./.github/k6:/scripts:ro
+      - ./k6-results:/output
+    working_dir: /scripts
+    environment:
+      K6_BASE_URL: ${K6_BASE_URL:-http://host.docker.internal:3000}
+      K6_CUSTOM_HEADERS: ${K6_CUSTOM_HEADERS:-}
+      K6_CLOUD_TOKEN: ${K6_CLOUD_TOKEN:-}
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    profiles:
+      - never # Prevents this from being started with 'docker compose up'
+
+  # Smoke test - minimal load verification
+  k6-smoke:
+    extends:
+      service: k6-base
+    command: run --out json=/output/smoke-results.json /scripts/scenarios/smoke.js
+    environment:
+      K6_SCENARIO: smoke
+      K6_BASE_URL: ${K6_BASE_URL:-http://host.docker.internal:3000}
+    profiles:
+      - k6
+
+  # Load test - normal traffic simulation
+  k6-load:
+    extends:
+      service: k6-base
+    command: run --out json=/output/load-results.json /scripts/scenarios/load.js
+    environment:
+      K6_SCENARIO: load
+      K6_BASE_URL: ${K6_BASE_URL:-http://host.docker.internal:3000}
+    profiles:
+      - k6
+
+  # Stress test - find breaking points
+  k6-stress:
+    extends:
+      service: k6-base
+    command: run --out json=/output/stress-results.json /scripts/scenarios/stress.js
+    environment:
+      K6_SCENARIO: stress
+      K6_BASE_URL: ${K6_BASE_URL:-http://host.docker.internal:3000}
+    profiles:
+      - k6
+
+  # Spike test - sudden traffic increases
+  k6-spike:
+    extends:
+      service: k6-base
+    command: run --out json=/output/spike-results.json /scripts/scenarios/spike.js
+    environment:
+      K6_SCENARIO: spike
+      K6_BASE_URL: ${K6_BASE_URL:-http://host.docker.internal:3000}
+    profiles:
+      - k6
+
+  # Soak test - extended duration
+  k6-soak:
+    extends:
+      service: k6-base
+    command: run --out json=/output/soak-results.json /scripts/scenarios/soak.js
+    environment:
+      K6_SCENARIO: soak
+      K6_BASE_URL: ${K6_BASE_URL:-http://host.docker.internal:3000}
+    profiles:
+      - k6
+
+  # Custom script runner
+  k6-custom:
+    extends:
+      service: k6-base
+    command: run ${K6_SCRIPT:-/scripts/scripts/default-test.js}
+    environment:
+      K6_BASE_URL: ${K6_BASE_URL:-http://host.docker.internal:3000}
+    profiles:
+      - k6
+
+networks:
+  default:
+    name: thumbwar-k6-network
+
+volumes:
+  k6-results:
+    driver: local

@@ -1,0 +1,134 @@
+{
+  "exclusions": [
+    {
+      "id": "GHSA-5c6j-r48x-rmvq",
+      "package": "serialize-javascript",
+      "reason": "RCE via RegExp.flags/Date.toISOString — transitive via @nestjs/cli > webpack > terser-webpack-plugin, devDep only, not user-facing"
+    },
+    {
+      "id": "GHSA-xf7r-hgr6-v32p",
+      "package": "multer",
+      "reason": "DoS via incomplete cleanup — transitive via @nestjs/platform-express, awaiting multer v2.1.0 release"
+    },
+    {
+      "id": "GHSA-v52c-386h-88mc",
+      "package": "multer",
+      "reason": "DoS via resource exhaustion — transitive via @nestjs/platform-express, awaiting multer v2.1.0 release"
+    },
+    {
+      "id": "GHSA-wf6x-7x77-mvgw",
+      "package": "immutable",
+      "reason": "Prototype Pollution — transitive via @graphql-codegen, devDep only, not user-facing"
+    },
+    {
+      "id": "GHSA-f269-vfmq-vjvj",
+      "package": "undici",
+      "reason": "WebSocket 64-bit length overflow DoS — transitive via serverless-esbuild > @effect/platform-node > undici, devDep only, not in production runtime"
+    },
+    {
+      "id": "GHSA-vrm6-8vpv-qv8q",
+      "package": "undici",
+      "reason": "Unbounded memory consumption in WebSocket permessage-deflate — transitive via serverless-esbuild > @effect/platform-node > undici, devDep only, not in production runtime"
+    },
+    {
+      "id": "GHSA-v9p9-hfj2-hcw8",
+      "package": "undici",
+      "reason": "Unhandled exception via invalid server_max_window_bits — transitive via serverless-esbuild > @effect/platform-node > undici, devDep only, not in production runtime"
+    },
+    {
+      "id": "GHSA-25h7-pfq9-p65f",
+      "package": "flatted",
+      "reason": "Unbounded recursion DoS in parse() revive phase — transitive via eslint > file-entry-cache > flat-cache > flatted, devDep only, not in production runtime"
+    },
+    {
+      "id": "GHSA-rf6f-7fwh-wjgh",
+      "package": "flatted",
+      "reason": "Prototype pollution in parse() — transitive via eslint flat-cache, devDeps only"
+    },
+    {
+      "id": "GHSA-38f7-945m-qr2g",
+      "package": "effect",
+      "reason": "AsyncLocalStorage context lost under concurrent RPC — transitive via serverless-esbuild > @effect/schema > effect, devDep only, not in production runtime"
+    },
+    {
+      "id": "GHSA-xjpj-3mr7-gcpf",
+      "package": "handlebars",
+      "reason": "JavaScript injection via unescaped CLI precompiler names — transitive via @codyswann/lisa > ts-jest and standard-version > conventional-changelog, devDeps only, no untrusted template input in our code"
+    },
+    {
+      "id": "GHSA-xhpv-hc6g-r9c6",
+      "package": "handlebars",
+      "reason": "JavaScript injection via AST type confusion (partial) — same transitive path as GHSA-xjpj-3mr7-gcpf, devDeps only"
+    },
+    {
+      "id": "GHSA-9cx6-37pm-9jff",
+      "package": "handlebars",
+      "reason": "DoS via malformed decorator syntax in template compilation — same transitive path as GHSA-xjpj-3mr7-gcpf, devDeps only"
+    },
+    {
+      "id": "GHSA-3mfm-83xf-c92r",
+      "package": "handlebars",
+      "reason": "JavaScript injection via AST type confusion (@partial-block) — same transitive path as GHSA-xjpj-3mr7-gcpf, devDeps only"
+    },
+    {
+      "id": "GHSA-2w6w-674q-4c4q",
+      "package": "handlebars",
+      "reason": "JavaScript injection via AST type confusion — same transitive path as GHSA-xjpj-3mr7-gcpf, devDeps only; handlebars 4.7.8 is the latest release with no patched version available"
+    },
+    {
+      "id": "GHSA-jg4p-7fhp-p32p",
+      "package": "@hapi/content",
+      "reason": "ReDoS in HTTP header parsing — transitive via serverless-offline > @hapi/hapi > @hapi/subtext > @hapi/pez > @hapi/content, devDep only, not in production runtime"
+    },
+    {
+      "id": "GHSA-3p68-rc4w-qgx5",
+      "package": "axios",
+      "reason": "NO_PROXY hostname normalization bypass leads to SSRF — transitive via serverless > axios, devDep only (serverless is a devDependency), not in production runtime"
+    },
+    {
+      "id": "GHSA-fvcv-3m26-pcqx",
+      "package": "axios",
+      "reason": "Unrestricted cloud metadata exfiltration via header injection chain — transitive via serverless > axios, devDep only (serverless is a devDependency), not in production runtime"
+    },
+    {
+      "id": "GHSA-pmwg-cvhr-8vh7",
+      "package": "axios",
+      "reason": "Incomplete fix for NO_PROXY bypass via 127.0.0.0/8 loopback subnet — transitive via serverless > axios, devDep only (serverless is a devDependency), not in production runtime"
+    },
+    {
+      "id": "GHSA-q8qp-cvcw-x6jj",
+      "package": "axios",
+      "reason": "Prototype pollution read-side gadgets in HTTP adapter — transitive via serverless > axios, devDep only (serverless is a devDependency), not in production runtime"
+    },
+    {
+      "id": "GHSA-pf86-5x62-jrwf",
+      "package": "axios",
+      "reason": "Prototype pollution gadgets enabling response tampering and request hijacking — transitive via serverless > axios, devDep only (serverless is a devDependency), not in production runtime"
+    },
+    {
+      "id": "GHSA-6chq-wfr3-2hj9",
+      "package": "axios",
+      "reason": "Header injection via prototype pollution — transitive via serverless > axios, devDep only (serverless is a devDependency), not in production runtime"
+    },
+    {
+      "id": "GHSA-5wm8-gmm8-39j9",
+      "package": "fast-xml-builder",
+      "reason": "Attribute value quote bypass — transitive via @aws-sdk production packages (e.g., @aws-sdk/client-cognito-identity-provider → @aws-sdk/core → @aws-sdk/xml-builder → fast-xml-parser → fast-xml-builder); the SDK uses fast-xml-builder exclusively to serialize outbound API requests to AWS service endpoints over TLS; user-supplied values (e.g., Cognito usernames/emails) are included in these requests but any XML attribute-quote injection only affects the outbound payload sent to AWS, not our application; AWS service endpoints validate inputs server-side and no local XML parsing occurs on the resulting output."
+    },
+    {
+      "id": "GHSA-j658-c2gf-x6pq",
+      "package": "velocityjs",
+      "reason": "Prototype pollution via #set path assignment — transitive via serverless-offline > velocityjs, devDep only (serverless-offline runs locally, not in production runtime)."
+    },
+    {
+      "id": "GHSA-q3j6-qgpj-74h6",
+      "package": "fast-uri",
+      "reason": "Path traversal via percent-encoded dot segments — transitive via ajv (used by @nestjs/cli, @nestjs/schematics, @commitlint/cli), devDeps only, not in production runtime."
+    },
+    {
+      "id": "GHSA-v39h-62p7-jpjc",
+      "package": "fast-uri",
+      "reason": "Host confusion via percent-encoded authority delimiters — transitive via ajv (used by @nestjs/cli, @nestjs/schematics, @commitlint/cli), devDeps only, not in production runtime."
+    }
+  ]
+}

@@ -1,0 +1,307 @@
+# This is an example deployment workflow that demonstrates the recommended pattern:
+# 1. Call the release.yml workflow to create a release
+# 2. Implement your custom deployment logic
+# 3. Optionally run load tests for staging deployments
+#
+# The release.yml workflow is kept separate from deployment to allow:
+# - Different deployment strategies per project (AWS, Azure, GCP, etc.)
+# - Custom deployment logic without modifying the release workflow
+# - Optional load testing based on environment
+# - Flexibility to deploy the same release to multiple environments
+
+name: 🚀 Release and Deploy
+
+on:
+  push:
+    branches:
+      - main
+      - staging
+      - dev
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - main
+          - staging
+          - dev
+
+# Prevent concurrent runs of the same workflow on the same ref
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Environment setup
+  determine_environment:
+    name: 🌍 Determine Environment
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      environment: ${{ steps.env.outputs.environment }}
+    steps:
+      - name: 🔄 Set environment
+        id: env
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "environment=${{ github.event.inputs.environment }}" >> $GITHUB_OUTPUT
+          else
+            echo "environment=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+          fi
+
+  # Step 1: Create a release
+  release:
+    name: 📦 Release
+    uses: CodySwannGT/lisa/.github/workflows/release.yml@main
+    needs: [determine_environment]
+    with:
+      environment: ${{ needs.determine_environment.outputs.environment }}
+      release_strategy: 'standard-version'
+      skip_jobs: 'test:e2e,test:unit,test:integration,test'
+      generate_sbom: true
+      override_blackout: true
+      require_approval: false
+      require_signatures: false
+      node_version: '22.21.1'
+      package_manager: 'bun'
+    secrets:
+      DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+      RELEASE_SIGNING_KEY: ${{ secrets.RELEASE_SIGNING_KEY }}
+      SIGNING_KEY_ID: ${{ secrets.SIGNING_KEY_ID }}
+      SIGNING_KEY_PASSPHRASE: ${{ secrets.SIGNING_KEY_PASSPHRASE }}
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+      SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+
+  verify_aws_credentials:
+    name: Verify AWS Credentials
+    runs-on: ubuntu-latest
+    needs: [release]
+    outputs:
+      has_aws_credentials: ${{ steps.check.outputs.has_aws_credentials }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - uses: noliran/branch-based-secrets@v1
+        with:
+          secrets: AWS_ACCOUNT_ID
+      - id: check
+        run: |
+          if [[ -z "${AWS_ACCOUNT_ID}" ]]; then
+            echo "has_aws_credentials=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_aws_credentials=true" >> $GITHUB_OUTPUT
+          fi
+        shell: bash
+        env:
+          AWS_ACCOUNT_ID: ${{ secrets[env.AWS_ACCOUNT_ID_NAME] }}
+
+  check_migration_required:
+    name: Check Migration Required
+    runs-on: ubuntu-latest
+    needs: [release, verify_aws_credentials]
+    if: needs.verify_aws_credentials.outputs.has_aws_credentials == 'true'
+    outputs:
+      requires_migration: ${{ steps.check.outputs.requires_migration }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - id: check
+        run: |
+          if [[ -z "${SKIP_MIGRATIONS}" ]]; then
+            echo "requires_migration=true" >> $GITHUB_OUTPUT
+          else
+            echo "requires_migration=false" >> $GITHUB_OUTPUT
+          fi
+        shell: bash
+        env:
+          SKIP_MIGRATIONS: ${{ vars.SKIP_MIGRATIONS }}
+          GITHUB_OUTPUT: ${{ github.output }}
+
+  verify_vpn:
+    name: Verify VPN
+    runs-on: ubuntu-latest
+    needs: [check_migration_required]
+    if: always() && needs.check_migration_required.outputs.requires_migration == 'true'
+    outputs:
+      has_vpn_setup: ${{ steps.check.outputs.has_vpn_setup }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - uses: noliran/branch-based-secrets@v1
+        with:
+          secrets: OVPN_CONFIG
+      - id: check
+        run: |
+          if [[ -z "${OVPN_CONFIG}" ]]; then
+            echo "has_vpn_setup=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_vpn_setup=true" >> $GITHUB_OUTPUT
+          fi
+        env:
+          OVPN_CONFIG: ${{ secrets[env.OVPN_CONFIG_NAME] }}
+          GITHUB_OUTPUT: ${{ github.output }}
+  migrate:
+    name: Schema Migrations
+    runs-on: ubuntu-latest
+    needs: verify_vpn
+    if: always() && needs.verify_vpn.outputs.has_vpn_setup == 'true'
+    permissions:
+      id-token: write # needed to interact with GitHub's OIDC Token endpoint.
+      contents: read
+    steps:
+      - uses: actions/checkout@v2
+      - uses: noliran/branch-based-secrets@v1
+        with:
+          secrets: AWS_ACCOUNT_ID
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::${{ secrets[env.AWS_ACCOUNT_ID_NAME] }}:role/DeployServiceRole
+          role-session-name: fedeploysession
+          aws-region: us-east-1
+      - name: Install Open VPN
+        run: sudo apt-get update; sudo apt-get install openvpn
+      - uses: noliran/branch-based-secrets@v1
+        with:
+          secrets: OVPN_CONFIG
+      - name: Setup VPN config
+        run: |
+          echo -e "${{ secrets[env.OVPN_CONFIG_NAME] }}" > config.ovpn
+          sudo chmod 700 config.ovpn
+      - name: Connect VPN
+        run: |
+          sudo openvpn --config "config.ovpn" --log "vpn.log" --daemon
+      - name: Wait for a VPN connection
+        timeout-minutes: 2
+        run: |
+          sleep 60s
+          sudo cat vpn.log
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.3.8'
+      - name: Install dependencies
+        run: bun install
+      - name: Run Schema Migrations
+        run: STAGE=${{ github.ref_name != 'main' && github.ref_name || 'production' }} bun run migration:run
+        env:
+          SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
+          AWS_PROFILE: '' # Override serverless.yml profile with empty string for CI
+  deploy:
+    needs: [migrate, verify_aws_credentials]
+    if: |
+      always() &&
+      needs.verify_aws_credentials.outputs.has_aws_credentials == 'true' &&
+      (needs.migrate.result == 'success' || needs.migrate.result == 'skipped')
+    name: Deploy
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # needed to interact with GitHub's OIDC Token endpoint
+      contents: read
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 22.21.1
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22.21.1
+      - uses: noliran/branch-based-secrets@v1
+        with:
+          secrets: AWS_ACCOUNT_ID
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::${{ secrets[env.AWS_ACCOUNT_ID_NAME] }}:role/DeployServiceRole
+          role-session-name: fedeploysession
+          aws-region: us-east-1
+      - name: Install dependencies
+        run: bun run install
+      - name: serverless deploy
+        run: |
+          bun run serverless deploy --stage ${{ github.ref_name != 'main' && github.ref_name || 'production' }}
+        env:
+          SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
+          AWS_PROFILE: '' # Override serverless.yml profile with empty string for CI
+
+      - name: 📢 Notify on success
+        run: echo "Successfully deployed version ${{ needs.release.outputs.version }} to ${{ needs.determine_environment.outputs.environment }}"
+
+  # Step 3: Load testing for staging deployments
+  load_testing:
+    name: 🔍 Load Testing
+    needs: [determine_environment, release, deploy]
+    if: |
+      always() && 
+      !cancelled() && 
+      needs.deploy.result == 'success' && 
+      (needs.determine_environment.outputs.environment == 'staging' || needs.determine_environment.outputs.environment == 'stage')
+    uses: CodySwannGT/lisa/.github/workflows/load-test.yml@main
+    with:
+      environment: ${{ needs.determine_environment.outputs.environment }}
+      test_scenario: 'smoke'
+      base_url: ${{ needs.deploy.outputs.environment_url }}
+      test_duration: '5m'
+      virtual_users: 50
+      fail_on_threshold: false
+      upload_results: true
+    secrets:
+      K6_CLOUD_TOKEN: ${{ secrets.K6_CLOUD_TOKEN }}
+      CUSTOM_HEADERS: ${{ secrets.CUSTOM_HEADERS }}
+
+  # Post-deployment monitoring (optional)
+  post_deployment_monitoring:
+    name: 📊 Post-Deployment Monitoring
+    needs: [determine_environment, release, deploy, load_testing]
+    if: |
+      always() && 
+      !cancelled() && 
+      needs.deploy.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Monitor Deployment Health
+        run: |
+          echo "## 📊 Post-Deployment Monitoring" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Environment**: ${{ needs.determine_environment.outputs.environment }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Version**: ${{ needs.release.outputs.version }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Deployment Status**: ${{ needs.deploy.outputs.deployment_status }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Environment URL**: ${{ needs.deploy.outputs.environment_url }}" >> $GITHUB_STEP_SUMMARY
+
+          # Add load test results for staging
+          if [[ "${{ needs.determine_environment.outputs.environment }}" == "staging" || "${{ needs.determine_environment.outputs.environment }}" == "stage" ]]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### 🔍 Load Test Results" >> $GITHUB_STEP_SUMMARY
+            echo "- **Test Scenario**: smoke" >> $GITHUB_STEP_SUMMARY
+            echo "- **Duration**: 5m" >> $GITHUB_STEP_SUMMARY
+            echo "- **Virtual Users**: 50" >> $GITHUB_STEP_SUMMARY
+            echo "- **Status**: ${{ needs.load_testing.result }}" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # Add monitoring checks here
+          # - Check application metrics
+          # - Verify error rates
+          # - Monitor response times
+          # - Check resource utilization
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Post-deployment monitoring complete" >> $GITHUB_STEP_SUMMARY
+
+          # Basic health check (uncomment and customize)
+          # curl -f ${{ needs.deploy.outputs.environment_url }}/health || echo "Health check failed"
+  create_issue_on_failure:
+    name: 📌 Create Issue on Failure
+    needs: [release, deploy]
+    if: ${{ always() && (needs.release.result == 'failure' || needs.deploy.result == 'failure') && !contains(github.event.head_commit.message, '[skip ci]') }}
+    uses: CodySwannGT/lisa/.github/workflows/create-issue-on-failure.yml@main
+    with:
+      package_manager: 'bun'
+      node_version: '22.21.1'
+      workflow_name: 'Release and Deploy'
+      failed_job: ${{ needs.release.result == 'failure' && 'release' || 'deploy' }}
+    secrets:
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+      PAT: ${{ secrets.PAT }}

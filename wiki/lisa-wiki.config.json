@@ -1,0 +1,109 @@
+{
+  "schemaVersion": "1.0.0",
+  "org": "Thumbwar",
+  "displayName": "Thumbwar Backend Wiki",
+  "purpose": "The durable knowledge base for the Thumbwar backend — a NestJS GraphQL platform built on a Lisa-governed agent workflow. It captures how the service is architected (Apollo GraphQL API, authentication, the database and DataLoader layers, GraphQL subscriptions and websockets, Valkey/Redis caching, health checks, and OpenTelemetry tracing), the decisions and conventions behind it, and the operational playbooks the team and its agents rely on, so contributors and AI agents can answer questions and onboard from a single cited source of truth.",
+  "mode": "embedded",
+  "wikiRoot": "wiki",
+  "frontmatter": true,
+  "categories": [
+    "concepts",
+    "entities",
+    "decisions",
+    "architecture",
+    "requirements",
+    "playbooks",
+    "open-questions",
+    "projects",
+    "sales",
+    "marketing",
+    "finance",
+    "customers",
+    "people",
+    "legal"
+  ],
+  "sources": {
+    "layout": "by-system"
+  },
+  "git": {
+    "prPerIngestion": true,
+    "autoMerge": true,
+    "targetBranch": "main",
+    "branchPrefix": "wiki/ingest"
+  },
+  "sensitivity": {
+    "enabled": true,
+    "default": "internal"
+  },
+  "sourceRetention": "sanitized-note-only",
+  "readme": {
+    "mode": "rich"
+  },
+  "documentation": {
+    "absorb": true
+  },
+  "connectors": {
+    "git": {
+      "enabled": true,
+      "sideEffects": "read-only-ingest"
+    },
+    "roles": {
+      "enabled": true,
+      "sideEffects": "read-only-ingest"
+    }
+  },
+  "staff": [
+    {
+      "id": "chief",
+      "role": "Chief of Staff",
+      "expertise": "Coordinating the digital staff, project state, decisions, playbooks, and open questions across the Thumbwar backend.",
+      "owns": {
+        "categories": ["projects", "decisions", "playbooks", "open-questions"]
+      },
+      "sensitivity": "confidential"
+    },
+    {
+      "id": "sally",
+      "role": "Sales",
+      "expertise": "Sales pipeline, deals, and go-to-market knowledge.",
+      "owns": { "categories": ["sales"] },
+      "sensitivity": "internal"
+    },
+    {
+      "id": "mark",
+      "role": "Marketing",
+      "expertise": "Marketing, positioning, and campaigns.",
+      "owns": { "categories": ["marketing"] },
+      "sensitivity": "internal"
+    },
+    {
+      "id": "felix",
+      "role": "Finance",
+      "expertise": "Finance, budgeting, and unit economics.",
+      "owns": { "categories": ["finance"] },
+      "sensitivity": "confidential"
+    },
+    {
+      "id": "casey",
+      "role": "Customer Success",
+      "expertise": "Customer success, support, and account health.",
+      "owns": { "categories": ["customers"] },
+      "sensitivity": "internal"
+    },
+    {
+      "id": "parker",
+      "role": "People",
+      "expertise": "People operations, hiring, and team knowledge.",
+      "owns": { "categories": ["people"] },
+      "sensitivity": "confidential"
+    },
+    {
+      "id": "lex",
+      "role": "Legal & Compliance",
+      "expertise": "Legal, compliance, and contractual obligations.",
+      "owns": { "categories": ["legal"] },
+      "sensitivity": "confidential"
+    }
+  ],
+  "contaminationTerms": []
+}
