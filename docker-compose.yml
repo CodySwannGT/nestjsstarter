@@ -1,7 +1,7 @@
 services:
   valkey:
     image: valkey/valkey:8-alpine
-    container_name: thumbwar-valkey
+    container_name: your-project-valkey
     ports:
       - '6379:6379'
     volumes:
@@ -14,35 +14,35 @@ services:
       retries: 5
       start_period: 5s
     networks:
-      - thumbwar-network
+      - your-project-network
     restart: unless-stopped
 
   postgres:
     image: postgres:15-alpine
-    container_name: thumbwar-postgres
+    container_name: your-project-postgres
     ports:
       - '5432:5432'
     environment:
-      POSTGRES_USER: thumbwar
-      POSTGRES_PASSWORD: thumbwar_local
-      POSTGRES_DB: thumbwar
+      POSTGRES_USER: your-project
+      POSTGRES_PASSWORD: your-project_local
+      POSTGRES_DB: your-project
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U thumbwar -d thumbwar']
+      test: ['CMD-SHELL', 'pg_isready -U your-project -d your-project']
       interval: 10s
       timeout: 5s
       retries: 5
       start_period: 10s
     networks:
-      - thumbwar-network
+      - your-project-network
     restart: unless-stopped
 
   backend:
     build:
       context: .
       dockerfile: Dockerfile.local
-    container_name: thumbwar-backend
+    container_name: your-project
     ports:
       - '3000:3000'
     environment:
@@ -50,9 +50,9 @@ services:
       NODE_ENV: development
       DATABASE_HOST: postgres
       DATABASE_PORT: 5432
-      DATABASE_NAME: thumbwar
-      DATABASE_USER: thumbwar
-      DATABASE_PASSWORD: thumbwar_local
+      DATABASE_NAME: your-project
+      DATABASE_USER: your-project
+      DATABASE_PASSWORD: your-project_local
       VALKEY_HOST: valkey
       VALKEY_PORT: 6379
     volumes:
@@ -64,11 +64,11 @@ services:
         condition: service_healthy
     command: ['bun', 'run', '--watch', 'src/main-local.ts']
     networks:
-      - thumbwar-network
+      - your-project-network
     restart: unless-stopped
 
 networks:
-  thumbwar-network:
+  your-project-network:
     driver: bridge
 
 volumes:

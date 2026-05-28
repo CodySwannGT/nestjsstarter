@@ -103,7 +103,7 @@ services:
 
 networks:
   default:
-    name: thumbwar-k6-network
+    name: your-project-k6-network
 
 volumes:
   k6-results:

@@ -39,10 +39,10 @@ const TEST_CONFIG = {
   PROXY_READ_HOST: "read-proxy.rds.amazonaws.com",
   DEFAULT_HOST: "localhost",
   DEFAULT_PORT: 5432,
-  DEFAULT_USER: "thumbwar",
+  DEFAULT_USER: "your-project",
   // eslint-disable-next-line sonarjs/no-hardcoded-passwords -- Test value, not a real credential
-  DEFAULT_PASSWORD: "thumbwar_local",
-  DEFAULT_DATABASE: "thumbwar",
+  DEFAULT_PASSWORD: "your-project_local",
+  DEFAULT_DATABASE: "your-project",
   MOCK_TOKEN: "mock-rds-token",
 } as const;
 

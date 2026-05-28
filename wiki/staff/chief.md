@@ -17,7 +17,7 @@ Owned categories: projects, decisions, playbooks, open-questions
 Owned connectors: (none)
 
 ## Expertise
-Coordinating the digital staff, project state, decisions, playbooks, and open questions across the Thumbwar backend.
+Coordinating the digital staff, project state, decisions, playbooks, and open questions across your-project.
 
 ## Reports to
 

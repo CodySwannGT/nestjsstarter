@@ -23,14 +23,14 @@ const DEFAULT_DATABASE_HOST = "localhost";
 const DEFAULT_DATABASE_PORT = 5432;
 
 /** Default database username for local development */
-const DEFAULT_DATABASE_USER = "thumbwar";
+const DEFAULT_DATABASE_USER = "your-project";
 
 /** Default database password for local development */
 // eslint-disable-next-line sonarjs/no-hardcoded-passwords -- Local development default, not a real credential
-const DEFAULT_DATABASE_PASSWORD = "thumbwar_local";
+const DEFAULT_DATABASE_PASSWORD = "your-project_local";
 
 /** Default database name */
-const DEFAULT_DATABASE_NAME = "thumbwar";
+const DEFAULT_DATABASE_NAME = "your-project";
 
 /** Default Valkey host */
 const DEFAULT_VALKEY_HOST = "localhost";

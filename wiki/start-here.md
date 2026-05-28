@@ -1,10 +1,10 @@
-# Start here — Thumbwar Backend Wiki
+# Start here — Your Project
 
 ## Purpose
-The durable knowledge base for the Thumbwar backend — a NestJS GraphQL platform built on a Lisa-governed agent workflow. It captures how the service is architected (Apollo GraphQL API, authentication, the database and DataLoader layers, GraphQL subscriptions and websockets, Valkey/Redis caching, health checks, and OpenTelemetry tracing), the decisions and conventions behind it, and the operational playbooks the team and its agents rely on, so contributors and AI agents can answer questions and onboard from a single cited source of truth.
+Engineering knowledge base for the your-project NestJS backend: a NestJS + Apollo GraphQL service (authentication, the database and DataLoader layers, GraphQL subscriptions and websockets, Valkey/Redis caching, health checks, and OpenTelemetry tracing) packaged for Lambda/serverless deployment. It captures the architecture, decisions, conventions, and operational playbooks so contributors and AI agents can answer questions and onboard from a single cited source of truth.
 
 ## What this is
-A git-native LLM Wiki owned by **Thumbwar** and maintained by the `lisa-wiki` kernel. It is the
+A git-native LLM Wiki owned by **`<your-org>`** (set `org` in [wiki/lisa-wiki.config.json](lisa-wiki.config.json) after templating) and maintained by the `lisa-wiki` kernel. It is the
 durable home for this project's knowledge (and documentation). Raw sources are preserved under
 `wiki/sources/`; distilled knowledge lives in the category pages; the rules are in
 `wiki/schema/llm-wiki-contract.md`.

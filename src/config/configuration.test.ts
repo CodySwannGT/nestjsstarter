@@ -40,10 +40,10 @@ describe("configuration", () => {
 
     expect(config.database.host).toBe("localhost");
     expect(config.database.port).toBe(5432);
-    expect(config.database.username).toBe("thumbwar");
+    expect(config.database.username).toBe("your-project");
     // eslint-disable-next-line sonarjs/no-hardcoded-passwords -- Test value, not a real credential
-    expect(config.database.password).toBe("thumbwar_local");
-    expect(config.database.name).toBe("thumbwar");
+    expect(config.database.password).toBe("your-project_local");
+    expect(config.database.name).toBe("your-project");
     expect(config.valkey.host).toBe("localhost");
     expect(config.valkey.port).toBe(6379);
     expect(config.valkey.maxRetriesPerRequest).toBe(3);

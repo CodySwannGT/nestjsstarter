@@ -1,4 +1,4 @@
-service: thumbwar-backend
+service: your-project
 frameworkVersion: '^4.0.0'
 
 # Configuration for serverless-esbuild community plugin (not native Serverless Framework esbuild).
@@ -64,17 +64,17 @@ provider:
 # provider:
 #   vpc:
 #     securityGroupIds:
-#       - ${ssm:/thumbwar/${self:provider.stage}/vpc/security-group-id}
+#       - ${ssm:/your-project/${self:provider.stage}/vpc/security-group-id}
 #     subnetIds:
-#       - ${ssm:/thumbwar/${self:provider.stage}/vpc/subnet-id-1}
-#       - ${ssm:/thumbwar/${self:provider.stage}/vpc/subnet-id-2}
+#       - ${ssm:/your-project/${self:provider.stage}/vpc/subnet-id-1}
+#       - ${ssm:/your-project/${self:provider.stage}/vpc/subnet-id-2}
 #
 # Environment Variables for Aurora (add to provider.environment):
-#   DATABASE_HOST: ${ssm:/thumbwar/${self:provider.stage}/database/host}
-#   DATABASE_PORT: ${ssm:/thumbwar/${self:provider.stage}/database/port}
-#   DATABASE_USER: ${ssm:/thumbwar/${self:provider.stage}/database/user}
-#   DATABASE_PASSWORD: ${ssm:/thumbwar/${self:provider.stage}/database/password~true}
-#   DATABASE_NAME: ${ssm:/thumbwar/${self:provider.stage}/database/name}
+#   DATABASE_HOST: ${ssm:/your-project/${self:provider.stage}/database/host}
+#   DATABASE_PORT: ${ssm:/your-project/${self:provider.stage}/database/port}
+#   DATABASE_USER: ${ssm:/your-project/${self:provider.stage}/database/user}
+#   DATABASE_PASSWORD: ${ssm:/your-project/${self:provider.stage}/database/password~true}
+#   DATABASE_NAME: ${ssm:/your-project/${self:provider.stage}/database/name}
 #   DATABASE_SSL: true
 #
 # Note: For production, use RDS Proxy for connection pooling:
