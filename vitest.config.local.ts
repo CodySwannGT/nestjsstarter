@@ -45,7 +45,10 @@ const config: ViteUserConfig = {
       // are covered by with-subsegment.test.ts and handler-level tests.
       "**/tracing/xray.config.test.ts",
     ],
-    setupFiles: ["./vitest.setup.ts"],
+    // The Lisa NestJS Vitest factory sets `root: "src"`, so setup-file paths
+    // resolve relative to `src/`. `vitest.setup.ts` lives at the project root,
+    // hence the `../` prefix (otherwise Vitest looks for `src/vitest.setup.ts`).
+    setupFiles: ["../vitest.setup.ts"],
     teardownTimeout: 5000,
     execArgv: ["--max-old-space-size=8192"],
     server: {

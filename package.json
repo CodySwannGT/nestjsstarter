@@ -1,11 +1,11 @@
 {
   "scripts": {
     "build": "tsc",
+    "postinstall": "[ -n \"$CI\" ] || node node_modules/@codyswann/lisa/dist/index.js --yes --skip-git-check . 2>/dev/null || true",
     "test:integration": "vitest run '.integration.' --passWithNoTests",
     "migration:generate": "typeorm-ts-node-commonjs migration:generate -d typeorm.config.ts src/database/migrations/$npm_config_name",
     "migration:run": "typeorm-ts-node-commonjs migration:run -d typeorm.config.ts",
     "migration:revert": "typeorm-ts-node-commonjs migration:revert -d typeorm.config.ts",
-    "postinstall": "[ -n \"$CI\" ] || node node_modules/@codyswann/lisa/dist/index.js --yes --skip-git-check . 2>/dev/null || true",
     "test": "vitest run",
     "test:unit": "vitest run --exclude='**/integration/**'",
     "test:cov": "vitest run --coverage",
@@ -88,7 +88,7 @@
   "devDependencies": {
     "@anatine/esbuild-decorators": "^0.2.19",
     "@ast-grep/cli": "^0.40.4",
-    "@codyswann/lisa": "^2.62.1",
+    "@codyswann/lisa": "^2.106.0",
     "@commitlint/cli": "^20.3.1",
     "@commitlint/config-conventional": "^20.3.1",
     "@eslint-community/eslint-plugin-eslint-comments": "^4.5.0",
