@@ -1,3 +1,7 @@
+@AGENTS.md
+
+<!-- Lisa: import the canonical AGENTS.md so Claude Code loads the same guidance every other agent reads. -->
+
 # Project Knowledge
 
 This project carries an in-repo LLM Wiki maintained by the `lisa-wiki` kernel.
