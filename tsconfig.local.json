@@ -5,7 +5,9 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "isolatedModules": true,
-    "lib": ["ES2022"],
+    "lib": [
+      "ES2022"
+    ],
     "noEmit": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -14,10 +16,15 @@
     "rootDir": ".",
     "declarationMap": true,
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ],
   "exclude": [
     "node_modules",
     "dist",
@@ -31,5 +38,6 @@
     "vitest.*.ts",
     "*.config.ts",
     "commitlint.config.cjs"
-  ]
+  ],
+  "files": []
 }
