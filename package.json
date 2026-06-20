@@ -152,7 +152,8 @@
     "eslint-plugin-sonarjs": "^4.0.3",
     "ws": ">=8.21.0",
     "esbuild": ">=0.28.1",
-    "form-data": ">=4.0.6"
+    "form-data": ">=4.0.6",
+    "multer": ">=2.2.0"
   },
   "resolutions": {
     "fast-xml-parser": ">=5.5.6",
@@ -168,7 +169,8 @@
     "vite": ">=8.0.16",
     "ws": ">=8.21.0",
     "esbuild": ">=0.28.1",
-    "form-data": ">=4.0.6"
+    "form-data": ">=4.0.6",
+    "multer": ">=2.2.0"
   },
   "trustedDependencies": [
     "@ast-grep/cli",
