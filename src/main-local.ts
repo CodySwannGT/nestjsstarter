@@ -6,6 +6,7 @@
 
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
+import { applyGraphqlHardening } from "./graphql/graphql-hardening";
 
 /**
  * Bootstraps the NestJS application for local development
@@ -29,6 +30,12 @@ async function bootstrap(): Promise<void> {
   });
 
   const port = 3000;
+
+  // Register the GraphQL hardening middleware (batched-POST operation cap)
+  // BEFORE listen() (which triggers init()) so it runs ahead of Apollo in the
+  // Express stack — keeping both entrypoints symmetrical.
+  applyGraphqlHardening(app);
+
   await app.listen(port);
 
   console.log(`Server running at http://localhost:${port}`);

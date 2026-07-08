@@ -32,6 +32,22 @@ const DEFAULT_DATABASE_PASSWORD = "your-project_local";
 /** Default database name */
 const DEFAULT_DATABASE_NAME = "your-project";
 
+/**
+ * Default maximum GraphQL operation depth. Relay-style connections add ~+2 per
+ * level (`edges → node → field`), so 10 leaves headroom for legitimately rich
+ * queries while blocking pathological deep recursion. Introspection is exempt
+ * regardless (see src/graphql/introspection.util.ts).
+ */
+const DEFAULT_GRAPHQL_MAX_DEPTH = 10;
+
+/**
+ * Default maximum operations per batched GraphQL HTTP POST. Mirrors a typical
+ * client `BatchHttpLink` `batchMax` of 10 so a full legitimate batch passes
+ * (only length > 10, i.e. 11+, is rejected). Keep in lockstep with the client
+ * value if it ever changes.
+ */
+const DEFAULT_GRAPHQL_MAX_BATCH_OPERATIONS = 10;
+
 /** Default Valkey host */
 const DEFAULT_VALKEY_HOST = "localhost";
 
@@ -102,6 +118,10 @@ interface GraphqlConfig {
   readonly logQueryComplexity: boolean;
   /** Maximum allowed query complexity */
   readonly maxComplexity: number;
+  /** Maximum allowed operation depth (validation rule, see src/graphql/depth-limit.rule.ts) */
+  readonly maxDepth: number;
+  /** Maximum operations per batched GraphQL HTTP POST (see src/graphql/batch-cap.middleware.ts) */
+  readonly maxBatchOperations: number;
 }
 
 /**
@@ -147,6 +167,26 @@ function buildDatabaseConfig(): DatabaseConfig {
 }
 
 /**
+ * Builds the GraphQL configuration namespace from environment variables.
+ * @returns GraphQL configuration object with offline-safe defaults
+ */
+function buildGraphqlConfig(): GraphqlConfig {
+  return {
+    logQueryComplexity: process.env.LOG_QUERY_COMPLEXITY === "true",
+    maxComplexity: 100,
+    maxDepth: parseInt(
+      process.env.GRAPHQL_MAX_DEPTH ?? String(DEFAULT_GRAPHQL_MAX_DEPTH),
+      10
+    ),
+    maxBatchOperations: parseInt(
+      process.env.GRAPHQL_MAX_BATCH_OPERATIONS ??
+        String(DEFAULT_GRAPHQL_MAX_BATCH_OPERATIONS),
+      10
+    ),
+  };
+}
+
+/**
  * Configuration factory for NestJS ConfigModule
  * @description Loads all configuration from environment variables with type safety
  * @returns Complete typed configuration object
@@ -166,10 +206,7 @@ export const configuration = (): Configuration => ({
     userPoolId: process.env.COGNITO_USER_POOL_ID,
     clientId: process.env.COGNITO_CLIENT_ID,
   },
-  graphql: {
-    logQueryComplexity: process.env.LOG_QUERY_COMPLEXITY === "true",
-    maxComplexity: 100,
-  },
+  graphql: buildGraphqlConfig(),
   websocket: {
     apiEndpoint: process.env.WEBSOCKET_API_ENDPOINT,
   },

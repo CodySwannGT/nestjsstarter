@@ -153,6 +153,26 @@ describe("configuration", () => {
     expect(config.graphql.logQueryComplexity).toBe(false);
   });
 
+  it("should default GraphQL hardening settings when not set", () => {
+    delete process.env.GRAPHQL_MAX_DEPTH;
+    delete process.env.GRAPHQL_MAX_BATCH_OPERATIONS;
+
+    const config = configuration();
+
+    expect(config.graphql.maxDepth).toBe(10);
+    expect(config.graphql.maxBatchOperations).toBe(10);
+  });
+
+  it("should read GraphQL hardening overrides from environment", () => {
+    process.env.GRAPHQL_MAX_DEPTH = "7";
+    process.env.GRAPHQL_MAX_BATCH_OPERATIONS = "25";
+
+    const config = configuration();
+
+    expect(config.graphql.maxDepth).toBe(7);
+    expect(config.graphql.maxBatchOperations).toBe(25);
+  });
+
   it("should read proxy host configuration", () => {
     process.env.DATABASE_PROXY_HOST = "proxy.example.com";
     process.env.DATABASE_PROXY_HOST_READ_1 = "proxy-read.example.com";

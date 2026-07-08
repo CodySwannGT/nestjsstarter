@@ -12,6 +12,7 @@ import { NestFactory } from "@nestjs/core";
 import { configure as serverlessExpress } from "@vendia/serverless-express";
 import type { Context, Callback } from "aws-lambda";
 import { AppModule } from "./app.module";
+import { applyGraphqlHardening } from "./graphql/graphql-hardening";
 
 /** Type for the serverless express handler */
 type ServerlessHandler = ReturnType<typeof serverlessExpress>;
@@ -38,6 +39,10 @@ const createServerGetter = (): (() => Promise<ServerlessHandler>) => {
         optionsSuccessStatus: 204,
       },
     });
+
+    // Register the GraphQL hardening middleware (batched-POST operation cap)
+    // BEFORE init() so it runs ahead of Apollo in the Express stack.
+    applyGraphqlHardening(nestApp);
 
     await nestApp.init();
     const app = nestApp.getHttpAdapter().getInstance();
