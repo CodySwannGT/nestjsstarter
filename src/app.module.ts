@@ -18,6 +18,8 @@ import { DataLoaderModule } from "./data-loader/data-loader.module";
 import { DataLoaderService } from "./data-loader/data-loader.service";
 import { DatabaseModule } from "./database/database.module";
 import { ComplexityPlugin } from "./graphql/complexity.plugin";
+import { depthLimitRule } from "./graphql/depth-limit.rule";
+import { formatLimitError } from "./graphql/limit-error-format";
 import { OperationLoggingPlugin } from "./graphql/operation-logging.plugin";
 import { HealthModule } from "./health/health.module";
 import { HelloModule } from "./hello/hello.module";
@@ -55,6 +57,20 @@ import { ValkeyModule } from "./valkey/valkey.module";
           : undefined,
         // Transform schema to enforce auth rules from extensions
         transformSchema: schema => combinedAuthTransformer(schema),
+        // Native depth-limit rule (realm-safe, AST-only). Per-operation: a
+        // batched POST is N independent documents, each validated alone; the
+        // array size itself is capped separately by the batch-cap middleware
+        // registered in graphql-hardening.ts.
+        validationRules: [
+          depthLimitRule(
+            configService.get("graphql.maxDepth", { infer: true })
+          ),
+        ],
+        // Restore the depth-limit error code (QUERY_TOO_DEEP) that Apollo's
+        // internal ValidationError wrapper otherwise force-overwrites with
+        // GRAPHQL_VALIDATION_FAILED. No-op for every non-limit error. See
+        // limit-error-format.ts for the full rationale.
+        formatError: formatLimitError,
         context: ({ req, res }: { req: Request; res: Response }) => ({
           req,
           res,
