@@ -28,6 +28,6 @@ describe("Lambda handler", () => {
 
   it("should accept three parameters", () => {
     // Verify the handler function signature has 3 parameters (event, context, callback)
-    expect(handler.length).toBe(3);
+    expect(handler).toHaveLength(3);
   });
 });

@@ -10,6 +10,7 @@
 
 import { expect } from "vitest";
 import { Test, TestingModule } from "@nestjs/testing";
+import { ConfigModule } from "../config/config.module";
 import { ValkeyService } from "../valkey/valkey.service";
 import { ValkeyModule } from "../valkey/valkey.module";
 import { ValkeyPubSub } from "./pubsub/valkey-pubsub";
@@ -104,7 +105,9 @@ describe("Subscription Integration Tests", () => {
     await cleanupTestData();
 
     ctx.module = await Test.createTestingModule({
-      imports: [ValkeyModule, SubscriptionModule],
+      // ConfigModule is global in the real app; isolated testing modules
+      // must provide it explicitly for ValkeyService's ConfigService
+      imports: [ConfigModule, ValkeyModule, SubscriptionModule],
     }).compile();
 
     await ctx.module.init();

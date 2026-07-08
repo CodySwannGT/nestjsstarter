@@ -19,6 +19,22 @@ custom:
     exclude:
       - '@aws-sdk/*'
       - 'aws-sdk'
+      # external-but-not-installed optionals must also be excluded from
+      # packaging or serverless-esbuild fails resolving them as prod deps
+      - 'fsevents'
+      - '@nestjs/websockets'
+      - '@nestjs/microservices'
+      - '@apollo/gateway'
+      - '@apollo/subgraph'
+      - '@as-integrations/fastify'
+      - 'ts-morph'
+      - '@mikro-orm/core'
+      - '@mikro-orm/nestjs'
+      - '@nestjs/mongoose'
+      - '@nestjs/sequelize'
+      - 'mongoose'
+      - 'sequelize'
+      - 'class-transformer/storage'
     # Mark optional peer dependencies as external to prevent bundling errors
     external:
       - 'fsevents'
@@ -28,6 +44,15 @@ custom:
       - '@apollo/subgraph'
       - '@as-integrations/fastify'
       - 'ts-morph'
+      # @nestjs/terminus optional ORM health indicators (not installed)
+      - '@mikro-orm/core'
+      - '@mikro-orm/nestjs'
+      - '@nestjs/mongoose'
+      - '@nestjs/sequelize'
+      - 'mongoose'
+      - 'sequelize'
+      # optional @nestjs/graphql require, resolved in try/catch at runtime
+      - 'class-transformer/storage'
 
 plugins:
   - serverless-esbuild
@@ -51,7 +76,10 @@ provider:
           Action:
             - 'execute-api:ManageConnections'
           Resource:
-            - 'arn:aws:execute-api:${aws:region}:${aws:accountId}:*/@connections/*'
+            # Account wildcard (still scoped to ManageConnections on
+            # @connections in-region): ${aws:accountId} needs an STS call,
+            # which breaks credential-free `sls offline start`
+            - 'arn:aws:execute-api:${aws:region}:*:*/@connections/*'
         - Effect: Allow
           Action:
             - 'xray:PutTraceSegments'

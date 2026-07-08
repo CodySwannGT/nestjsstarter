@@ -10,7 +10,7 @@ initializeXRay();
 
 import { NestFactory } from "@nestjs/core";
 import { configure as serverlessExpress } from "@vendia/serverless-express";
-import { Context, Callback } from "aws-lambda";
+import type { Context, Callback } from "aws-lambda";
 import { AppModule } from "./app.module";
 
 /** Type for the serverless express handler */

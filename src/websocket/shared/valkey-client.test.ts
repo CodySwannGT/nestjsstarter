@@ -143,7 +143,7 @@ describe("valkey-client", () => {
 
       expect(first).toBe(second);
       // Constructor must not have been called again
-      expect(MockRedis.mock.calls.length).toBe(callCountBefore);
+      expect(MockRedis.mock.calls).toHaveLength(callCountBefore);
     });
 
     it("registers an error listener on the client during initialisation", () => {

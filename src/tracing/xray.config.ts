@@ -24,6 +24,14 @@ const logger = new Logger("XRayConfig");
 const initState = { initialized: false };
 
 /**
+ * Whether the app runs without X-Ray infrastructure (local development).
+ * @returns True when IS_OFFLINE=true
+ */
+function isOfflineMode(): boolean {
+  return typeof process !== "undefined" && process.env?.IS_OFFLINE === "true";
+}
+
+/**
  * Initialize AWS X-Ray SDK for Lambda environment.
  * @description Configures X-Ray with appropriate settings for Lambda:
  * - Sets context missing strategy to LOG_ERROR (prevents crashes when context unavailable)
@@ -40,10 +48,7 @@ export function initializeXRay(): void {
     return;
   }
 
-  const isOffline =
-    typeof process !== "undefined" && process.env?.IS_OFFLINE === "true";
-
-  if (isOffline) {
+  if (isOfflineMode()) {
     Object.assign(initState, { initialized: true });
     logger.log("X-Ray disabled in offline mode");
     return;
@@ -90,6 +95,12 @@ export function initializeXRay(): void {
  * - Called outside of a traced context
  */
 export function getXRaySegment(): unknown {
+  // Offline mode never has a segment; asking the SDK anyway makes it log a
+  // "Failed to get the current sub/segment" ERROR stack on every request
+  if (isOfflineMode()) {
+    return null;
+  }
+
   try {
     const AWSXRay = require("aws-xray-sdk-core");
 
@@ -108,6 +119,10 @@ export function getXRaySegment(): unknown {
  * Returns null when X-Ray SDK is not installed or not properly initialized.
  */
 export function getXRayNamespace(): unknown {
+  if (isOfflineMode()) {
+    return null;
+  }
+
   try {
     const AWSXRay = require("aws-xray-sdk-core");
 

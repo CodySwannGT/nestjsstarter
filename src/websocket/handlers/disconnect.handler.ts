@@ -7,7 +7,7 @@
 import { initializeXRay, withXRaySubsegment } from "../../tracing";
 initializeXRay();
 
-import { APIGatewayProxyHandler, APIGatewayProxyResult } from "aws-lambda";
+import type { APIGatewayProxyHandler, APIGatewayProxyResult } from "aws-lambda";
 import { removeConnection } from "../shared/valkey-client";
 
 /**
