@@ -26,4 +26,7 @@ export default new DataSource({
   namingStrategy: new SnakeNamingStrategy(),
   entities: ["src/**/*.entity.ts"],
   migrations: ["src/database/migrations/*.ts"],
+  // Per-migration transactions so a migration can opt out (e.g.
+  // CREATE INDEX CONCURRENTLY cannot run inside a transaction)
+  migrationsTransactionMode: "each",
 });

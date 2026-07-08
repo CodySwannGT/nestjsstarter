@@ -4,6 +4,11 @@ frameworkVersion: '^4.0.0'
 # Configuration for serverless-esbuild community plugin (not native Serverless Framework esbuild).
 # We use this plugin instead of native esbuild for features like custom plugins (esbuild.plugins.js).
 custom:
+  # Remove old Lambda versions on deploy so the account doesn't accumulate
+  # storage against the 75GB code-storage limit
+  prune:
+    automatic: true
+    number: 3
   esbuild:
     bundle: true
     minify: false
@@ -56,17 +61,45 @@ custom:
 
 plugins:
   - serverless-esbuild
+  - serverless-plugin-common-excludes
   - serverless-offline
+  - serverless-dotenv-plugin
 
 provider:
   name: aws
   runtime: nodejs22.x
   region: us-east-1
+  # Operators opt in with AWS_PROFILE; the empty default keeps
+  # credential-free local boot (`sls offline start`) and CI working
+  profile: ${env:AWS_PROFILE, ''}
   tracing:
     lambda: true
     apiGateway: true
   httpApi:
-    cors: true
+    # Explicit CORS config required for Sentry SDK headers (sentry-trace,
+    # baggage). The default `cors: true` only allows standard headers,
+    # causing CORS errors when a frontend sends tracing headers
+    cors:
+      allowedOrigins:
+        - '*'
+      allowedHeaders:
+        - Content-Type
+        - Authorization
+        - X-Amz-Date
+        - X-Api-Key
+        - X-Amz-Security-Token
+        - X-Amz-User-Agent
+        - sentry-trace
+        - baggage
+      allowedMethods:
+        - GET
+        - POST
+        - PUT
+        - PATCH
+        - DELETE
+        - HEAD
+        - OPTIONS
+      maxAge: 86400
   websocketsApiName: ${self:service}-websockets-${sls:stage}
   websocketsApiRouteSelectionExpression: $request.body.type
   iam:
@@ -84,6 +117,14 @@ provider:
           Action:
             - 'xray:PutTraceSegments'
             - 'xray:PutTelemetryRecords'
+          Resource: '*'
+        # Required by src/database/rds-signer.ts (IAM database auth) and
+        # secrets-based configuration in production
+        - Effect: Allow
+          Action: 'rds-db:connect'
+          Resource: '*'
+        - Effect: Allow
+          Action: 'secretsmanager:GetSecretValue'
           Resource: '*'
 
 # Production VPC Configuration for Aurora Serverless v2
@@ -115,11 +156,17 @@ build:
   esbuild: false
 
 package:
+  # Per-function packaging keeps each Lambda's unzipped artifact under the
+  # 250MB cap: serverless-esbuild emits one tree-shaken bundle per handler
+  # and only ships the runtime-external node_modules that handler requires
+  individually: true
   patterns:
     - '!src/**/*.spec.ts'
     - '!src/**/*.test.ts'
     - '!src/**/*.d.ts'
     - '!**/*.js.map'
+    # Devtime-only deps with no runtime callers — never ship them
+    - '!node_modules/@graphql-codegen/**'
 
 functions:
   main:

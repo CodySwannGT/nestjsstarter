@@ -9,6 +9,7 @@ jspm_packages
 dist/
 dist
 .build/
+.build-boot/
 .serverless/
 .serverless
 cdk.out/

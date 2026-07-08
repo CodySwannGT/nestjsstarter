@@ -58,4 +58,4 @@ amplify
 # their `prettier --check .` gate through no fault of the host. Keep it out of
 # the format gate. The rails counterpart (scripts/lisa-mutation.sh) is already
 # covered by the *.sh rule above. No-op for projects without it.
-scripts/lisa-mutation.mjs
+scripts/lisa-mutation.mjs.build-boot
