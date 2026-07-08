@@ -8,6 +8,7 @@
     "build/**",
     "dist/**",
     ".build/**",
+    ".build-boot/**",
     "coverage/**",
     "node_modules/**",
     "*.generated.*",
