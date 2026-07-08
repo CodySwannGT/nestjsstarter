@@ -48,6 +48,11 @@ import { ValkeyModule } from "./valkey/valkey.module";
         sortSchema: true,
         playground: false,
         introspection: true,
+        // graphql-ws transport for local development only; deployed
+        // subscriptions are delivered through API Gateway WebSockets
+        subscriptions: configService.get("app.isOffline", { infer: true })
+          ? { "graphql-ws": true }
+          : undefined,
         // Transform schema to enforce auth rules from extensions
         transformSchema: schema => combinedAuthTransformer(schema),
         context: ({ req, res }: { req: Request; res: Response }) => ({

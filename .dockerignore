@@ -1,0 +1,23 @@
+# Keep the image's linux-native install; never ship host artifacts
+node_modules
+.build
+dist
+coverage
+
+# VCS, agent, and local tooling state — irrelevant to the runtime image
+.git
+.github
+.claude
+.codex
+.agents
+.beads
+.husky
+.lisabak
+wiki
+plans
+e2e
+
+# Local env files must be provided via docker-compose environment, not baked in
+.env
+.env.*
+!.env.example

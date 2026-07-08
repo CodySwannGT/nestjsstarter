@@ -7,9 +7,7 @@ WORKDIR /app
 
 # Copy dependency files first for layer caching optimization
 COPY package.json bun.lock ./
-
-# Copy local ESLint plugin (required for bun install)
-COPY eslint-plugin-code-organization ./eslint-plugin-code-organization
+COPY patches ./patches
 
 RUN bun install
 
