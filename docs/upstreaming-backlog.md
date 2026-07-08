@@ -97,6 +97,19 @@ offline-safe defaults. Not an "upstream" — a net-new improvement.
 
 ---
 
+## Starter gaps found along the way
+
+- **The `typecheck` gate does not type-check test files.** `tsconfig.nestjs.json`
+  excludes `**/*.test.ts` / `**/*.spec.ts`, and vitest runs specs through
+  esbuild (which strips types without checking), so **type errors in test
+  files ship uncaught** — CI is green while specs are type-unsound. (Found
+  porting the Cognito triggers: four real spec type errors that `bun run
+  typecheck` never saw.) `tsconfig.spec.json` is stale (jest types, `.spec.ts`
+  only — the repo is vitest + `.test.ts`). Fix: add a test typecheck step
+  (a `tsconfig` that includes `**/*.test.ts` with vitest globals) to the gate
+  battery and CI. Do it as its own PR — it will likely surface latent type
+  errors in pre-existing specs that need cleaning first.
+
 ## Lisa upstream follow-ups (separate track)
 
 These are about the Lisa template that manages the starter, not the starter

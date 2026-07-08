@@ -216,3 +216,34 @@ functions:
     handler: src/websocket/authorizer/index.wsAuthorizer
     timeout: 10
     memorySize: 256
+
+  # Cognito custom-auth (passwordless OTP) Lambda triggers.
+  # These have no `events:` block on purpose — Cognito triggers are wired via
+  # the user-pool trigger configuration (out of scope here), so they attach to
+  # the pool's DefineAuthChallenge / CreateAuthChallenge /
+  # VerifyAuthChallengeResponse / PreSignUp / PreTokenGeneration triggers at
+  # deploy time. They are deploy-only and never imported by the running app.
+  cognitoDefineAuthChallenge:
+    handler: src/auth/cognito/handlers/index.defineAuthChallenge
+    timeout: 10
+    memorySize: 256
+
+  cognitoCreateAuthChallenge:
+    handler: src/auth/cognito/handlers/index.createAuthChallenge
+    timeout: 10
+    memorySize: 256
+
+  cognitoVerifyAuthChallengeResponse:
+    handler: src/auth/cognito/handlers/index.verifyAuthChallengeResponse
+    timeout: 10
+    memorySize: 256
+
+  cognitoPreSignUp:
+    handler: src/auth/cognito/handlers/index.preSignUp
+    timeout: 10
+    memorySize: 256
+
+  cognitoPreTokenGeneration:
+    handler: src/auth/cognito/handlers/index.preTokenGeneration
+    timeout: 10
+    memorySize: 256
