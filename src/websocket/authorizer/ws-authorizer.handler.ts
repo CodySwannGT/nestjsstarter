@@ -10,7 +10,7 @@
 import { initializeXRay, withXRaySubsegment } from "../../tracing";
 initializeXRay();
 
-import {
+import type {
   APIGatewayAuthorizerResult,
   APIGatewayRequestAuthorizerHandler,
 } from "aws-lambda";
@@ -118,8 +118,7 @@ const validateJwt = async (token: string): Promise<JwtPayload> => {
     sub: verified.sub,
     email: verified.email as string | undefined,
     "cognito:groups": verified["cognito:groups"] as
-      | readonly string[]
-      | undefined,
+      readonly string[] | undefined,
     exp: verified.exp,
     iat: verified.iat,
     iss: verified.iss,

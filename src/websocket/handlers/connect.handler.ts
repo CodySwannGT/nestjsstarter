@@ -7,7 +7,7 @@
 import { initializeXRay, withXRaySubsegment } from "../../tracing";
 initializeXRay();
 
-import {
+import type {
   APIGatewayProxyEvent,
   APIGatewayProxyHandler,
   APIGatewayProxyResult,

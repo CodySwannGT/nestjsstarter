@@ -1,5 +1,5 @@
 {
-  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "$schema": "https://unpkg.com/knip@6/schema.json",
   "entry": ["src/**/*.ts", "lambdas/**/*.ts", "lib/**/*.ts", "scripts/**/*.ts"],
   "project": ["src/**/*.ts", "lambdas/**/*.ts", "lib/**/*.ts"],
   "ignore": [
@@ -75,6 +75,7 @@
     "sentry-cli",
     "sls",
     "tsc",
+    "typescript7/bin/tsc",
     "tsx",
     "vitest"
   ],
