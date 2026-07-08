@@ -7,7 +7,9 @@
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { Module } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
+import { APP_FILTER } from "@nestjs/core";
 import { GraphQLModule } from "@nestjs/graphql";
+import { SentryGlobalFilter, SentryModule } from "@sentry/nestjs/setup";
 import { Request, Response } from "express";
 import { join } from "path";
 import { AuthModule } from "./auth/auth.module";
@@ -35,6 +37,10 @@ import { ValkeyModule } from "./valkey/valkey.module";
  */
 @Module({
   imports: [
+    // Registers Sentry request/error hooks. The SDK is initialized separately
+    // at process startup (src/sentry) and is inert when SENTRY_DSN is unset,
+    // so this is a no-op in the zero-config offline default.
+    SentryModule.forRoot(),
     ConfigModule,
     GraphQLModule.forRootAsync<ApolloDriverConfig>({
       driver: ApolloDriver,
@@ -86,6 +92,15 @@ import { ValkeyModule } from "./valkey/valkey.module";
     SubscriptionModule,
     ValkeyModule,
   ],
-  providers: [ComplexityPlugin, OperationLoggingPlugin],
+  providers: [
+    ComplexityPlugin,
+    OperationLoggingPlugin,
+    // Catches and reports unhandled exceptions to Sentry while preserving
+    // NestJS's default error responses. No-op when Sentry is disabled.
+    {
+      provide: APP_FILTER,
+      useClass: SentryGlobalFilter,
+    },
+  ],
 })
 export class AppModule {}

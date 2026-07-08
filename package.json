@@ -58,6 +58,7 @@
     "sg:scan": "ast-grep scan",
     "lisa:update": "npx @codyswann/lisa@latest .",
     "security:zap": "bash scripts/zap-baseline.sh",
+    "sentry:sourcemaps": "bun run build && sentry-cli sourcemaps inject --org \"$SENTRY_ORG\" --project \"$SENTRY_PROJECT\" ./.build && sentry-cli sourcemaps upload --org \"$SENTRY_ORG\" --project \"$SENTRY_PROJECT\" ./.build",
     "setup:deploy-key": "setup-deploy-key"
   },
   "engines": {
@@ -68,7 +69,6 @@
     "node": "22.21.1"
   },
   "dependencies": {
-    "graphql": "^16.11.0",
     "@apollo/server": "^5.5.1",
     "@as-integrations/express5": "^1.1.2",
     "@aws-sdk/client-apigatewaymanagementapi": "^3.1082.0",
@@ -83,12 +83,15 @@
     "@nestjs/platform-express": "^11.1.28",
     "@nestjs/terminus": "^11.1.1",
     "@nestjs/typeorm": "^11.0.3",
+    "@sentry/nestjs": "9",
+    "@sentry/profiling-node": "9",
     "@vendia/serverless-express": "^4.12.6",
     "aws-jwt-verify": "^5.2.1",
     "aws-xray-sdk-core": "^3.12.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.15.1",
     "dataloader": "^2.2.3",
+    "graphql": "^16.11.0",
     "graphql-query-complexity": "^1.1.1",
     "graphql-subscriptions": "^3.0.0",
     "graphql-ws": "^6.0.8",
@@ -115,6 +118,7 @@
     "@nestjs/cli": "^11.0.23",
     "@nestjs/schematics": "^11.1.0",
     "@nestjs/testing": "^11.1.28",
+    "@sentry/cli": "2",
     "@types/aws-lambda": "^8.10.162",
     "@types/express": "^5.0.6",
     "@types/fs-extra": "^11.0.4",
@@ -151,8 +155,8 @@
     "ts-node": "^10.9.2",
     "tsx": "^4.23.0",
     "typescript": "^6.0.3",
-    "typescript7": "npm:typescript@^7.0.2",
     "typescript-eslint": "^8.63.0",
+    "typescript7": "npm:typescript@^7.0.2",
     "vite": "^8.1.3",
     "vitest": "^4.1.10"
   },

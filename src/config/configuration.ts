@@ -14,7 +14,11 @@
  * - cognito: AWS Cognito authentication settings
  * - graphql: GraphQL server settings
  * - websocket: WebSocket API Gateway settings
+ * - sentry: Sentry error-tracking and tracing settings
  */
+
+/** Default Sentry environment name when none is configured */
+const DEFAULT_SENTRY_ENVIRONMENT = "development";
 
 /** Default database host for local development */
 const DEFAULT_DATABASE_HOST = "localhost";
@@ -133,6 +137,26 @@ interface WebsocketConfig {
 }
 
 /**
+ * Sentry error-tracking and tracing configuration namespace
+ * @remarks
+ * The SDK itself is initialized from environment variables at process startup
+ * (see src/sentry/sentry.config.ts) because init must run before the
+ * ConfigService exists. This namespace exposes the same values for type-safe
+ * access elsewhere and documents the supported env vars. Defaults are
+ * offline-safe: no DSN and zero sample rates mean Sentry is fully inert.
+ */
+interface SentryConfig {
+  /** Sentry DSN; undefined/empty disables Sentry entirely */
+  readonly dsn: string | undefined;
+  /** Environment name reported to Sentry (e.g. dev, staging, production) */
+  readonly environment: string;
+  /** Fraction of transactions traced (0..1); 0 disables tracing */
+  readonly tracesSampleRate: number;
+  /** Fraction of traced transactions profiled (0..1); 0 disables profiling */
+  readonly profilesSampleRate: number;
+}
+
+/**
  * Complete application configuration
  */
 export interface Configuration {
@@ -142,6 +166,7 @@ export interface Configuration {
   readonly cognito: CognitoConfig;
   readonly graphql: GraphqlConfig;
   readonly websocket: WebsocketConfig;
+  readonly sentry: SentryConfig;
 }
 
 /**
@@ -187,6 +212,34 @@ function buildGraphqlConfig(): GraphqlConfig {
 }
 
 /**
+ * Parses a Sentry sample-rate env var into a number in the range [0, 1].
+ * @param raw - The raw environment variable value, if any.
+ * @returns The parsed rate, or 0 when unset or not a finite number.
+ */
+function parseSampleRate(raw: string | undefined): number {
+  const parsed = Number(raw);
+  return Number.isFinite(parsed) ? parsed : 0;
+}
+
+/**
+ * Builds the Sentry configuration namespace from environment variables.
+ * @returns Sentry configuration object with offline-safe defaults
+ */
+function buildSentryConfig(): SentryConfig {
+  return {
+    dsn: process.env.SENTRY_DSN,
+    environment:
+      process.env.SENTRY_ENVIRONMENT ??
+      process.env.STAGE ??
+      DEFAULT_SENTRY_ENVIRONMENT,
+    tracesSampleRate: parseSampleRate(process.env.SENTRY_TRACES_SAMPLE_RATE),
+    profilesSampleRate: parseSampleRate(
+      process.env.SENTRY_PROFILES_SAMPLE_RATE
+    ),
+  };
+}
+
+/**
  * Configuration factory for NestJS ConfigModule
  * @description Loads all configuration from environment variables with type safety
  * @returns Complete typed configuration object
@@ -210,6 +263,7 @@ export const configuration = (): Configuration => ({
   websocket: {
     apiEndpoint: process.env.WEBSOCKET_API_ENDPOINT,
   },
+  sentry: buildSentryConfig(),
 });
 
 /**
