@@ -42,6 +42,16 @@ amplify
 # No-op for projects without an OpenCode mirror.
 .opencode
 
+# lisa cross-pollinate regenerates the Cursor mirror (.cursor/), the Copilot
+# agent/prompt mirrors (.github/agents, .github/prompts), and the Codex skill
+# interface sidecars (.claude/skills/*/agents/openai.yaml). Same generated-output
+# rationale as .codex above; formatting them would trip cross-pollination's
+# drift detection.
+.cursor
+.github/agents
+.github/prompts
+.claude/skills/**/agents/openai.yaml
+
 # Lisa ships scripts/lisa-mutation.mjs as a managed helper, formatted in Lisa's
 # own Prettier style (single quotes). Host projects run varying Prettier configs
 # (commonly the default double-quote style), so the managed script would trip

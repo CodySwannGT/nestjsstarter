@@ -1,0 +1,264 @@
+{
+  "version": 1,
+  "entries": {
+    "mcp:project": {
+      "source": {
+        "agent": "claude",
+        "path": ".mcp.json",
+        "hash": "c9977d1cdc1c1a8eee42606b9f2ccd723105abb014ccb0f0985b394b8a5aeb3b"
+      },
+      "targets": [
+        {
+          "agent": "cursor",
+          "path": ".cursor/mcp.json",
+          "generatedHash": "c9977d1cdc1c1a8eee42606b9f2ccd723105abb014ccb0f0985b394b8a5aeb3b"
+        },
+        {
+          "agent": "codex",
+          "path": ".codex/config.toml",
+          "generatedHash": "5c95e9cc854c1b747536b14f8be482054238112e690401f67503617ecb864de1"
+        }
+      ]
+    },
+    "rule:PROJECT_RULES": {
+      "source": {
+        "agent": "claude",
+        "path": ".claude/rules/PROJECT_RULES.md",
+        "hash": "d677effcdbedaa42faa06721e4db2a6a7a385cf2bed76e1d262bc0acce0aa0ad"
+      },
+      "targets": [
+        {
+          "agent": "cursor",
+          "path": ".cursor/rules/PROJECT_RULES.mdc",
+          "generatedHash": "0115ab7248e93eb659701205b7b5e3e9ae620bce62d131abbe6bd886a0ddd25f"
+        },
+        {
+          "agent": "codex",
+          "path": "AGENTS.md",
+          "generatedHash": "6c2ce274d9defad1f09fa3b767e22bc6638c03d74bf28c567de721fe3a2b2fb8"
+        },
+        {
+          "agent": "agy",
+          "path": "AGENTS.md",
+          "generatedHash": "6c2ce274d9defad1f09fa3b767e22bc6638c03d74bf28c567de721fe3a2b2fb8"
+        },
+        {
+          "agent": "opencode",
+          "path": "AGENTS.md",
+          "generatedHash": "6c2ce274d9defad1f09fa3b767e22bc6638c03d74bf28c567de721fe3a2b2fb8"
+        },
+        {
+          "agent": "copilot",
+          "path": "AGENTS.md",
+          "generatedHash": "6c2ce274d9defad1f09fa3b767e22bc6638c03d74bf28c567de721fe3a2b2fb8"
+        }
+      ]
+    },
+    "skill:reduce-complexity": {
+      "source": {
+        "agent": "claude",
+        "path": ".claude/skills/reduce-complexity",
+        "hash": "7889d615c15838f3d2e04d0a039389a6a21faabc3a8f3665b1e9d99b3616950b"
+      },
+      "targets": [
+        {
+          "agent": "codex",
+          "path": ".claude/skills/reduce-complexity/agents/openai.yaml",
+          "generatedHash": "00e24511a586a095bfbfdf74113f531d62870ce8f20971fc9bc8e65b2ac70933"
+        }
+      ]
+    },
+    "agent:casey": {
+      "source": {
+        "agent": "claude",
+        "path": ".claude/agents/casey.md",
+        "hash": "0c6dfa54ecfb5f3af71fa3bb525782a9bb5125d21a9bcce5a7e0ceb6ffe8abcc"
+      },
+      "targets": [
+        {
+          "agent": "cursor",
+          "path": ".cursor/agents/casey.md",
+          "generatedHash": "0c6dfa54ecfb5f3af71fa3bb525782a9bb5125d21a9bcce5a7e0ceb6ffe8abcc"
+        },
+        {
+          "agent": "copilot",
+          "path": ".github/agents/casey.agent.md",
+          "generatedHash": "0c6dfa54ecfb5f3af71fa3bb525782a9bb5125d21a9bcce5a7e0ceb6ffe8abcc"
+        },
+        {
+          "agent": "opencode",
+          "path": ".opencode/agents/casey.md",
+          "generatedHash": "0c6dfa54ecfb5f3af71fa3bb525782a9bb5125d21a9bcce5a7e0ceb6ffe8abcc"
+        }
+      ]
+    },
+    "agent:chief": {
+      "source": {
+        "agent": "claude",
+        "path": ".claude/agents/chief.md",
+        "hash": "0d69f9202fad5388af90cfa40f2ad888b71b80d5069c21af43532c690a74c0f2"
+      },
+      "targets": [
+        {
+          "agent": "cursor",
+          "path": ".cursor/agents/chief.md",
+          "generatedHash": "0d69f9202fad5388af90cfa40f2ad888b71b80d5069c21af43532c690a74c0f2"
+        },
+        {
+          "agent": "copilot",
+          "path": ".github/agents/chief.agent.md",
+          "generatedHash": "0d69f9202fad5388af90cfa40f2ad888b71b80d5069c21af43532c690a74c0f2"
+        },
+        {
+          "agent": "opencode",
+          "path": ".opencode/agents/chief.md",
+          "generatedHash": "0d69f9202fad5388af90cfa40f2ad888b71b80d5069c21af43532c690a74c0f2"
+        }
+      ]
+    },
+    "agent:felix": {
+      "source": {
+        "agent": "claude",
+        "path": ".claude/agents/felix.md",
+        "hash": "6a3e8f6934d8e02aef19e09ed24a380f46bd99ed7220b334ddaffa9148e9c50a"
+      },
+      "targets": [
+        {
+          "agent": "cursor",
+          "path": ".cursor/agents/felix.md",
+          "generatedHash": "6a3e8f6934d8e02aef19e09ed24a380f46bd99ed7220b334ddaffa9148e9c50a"
+        },
+        {
+          "agent": "copilot",
+          "path": ".github/agents/felix.agent.md",
+          "generatedHash": "6a3e8f6934d8e02aef19e09ed24a380f46bd99ed7220b334ddaffa9148e9c50a"
+        },
+        {
+          "agent": "opencode",
+          "path": ".opencode/agents/felix.md",
+          "generatedHash": "6a3e8f6934d8e02aef19e09ed24a380f46bd99ed7220b334ddaffa9148e9c50a"
+        }
+      ]
+    },
+    "agent:lex": {
+      "source": {
+        "agent": "claude",
+        "path": ".claude/agents/lex.md",
+        "hash": "b862fe814f37f550086fe902638abe0380b76267304b2155f3206fa84ca34994"
+      },
+      "targets": [
+        {
+          "agent": "cursor",
+          "path": ".cursor/agents/lex.md",
+          "generatedHash": "b862fe814f37f550086fe902638abe0380b76267304b2155f3206fa84ca34994"
+        },
+        {
+          "agent": "copilot",
+          "path": ".github/agents/lex.agent.md",
+          "generatedHash": "b862fe814f37f550086fe902638abe0380b76267304b2155f3206fa84ca34994"
+        },
+        {
+          "agent": "opencode",
+          "path": ".opencode/agents/lex.md",
+          "generatedHash": "b862fe814f37f550086fe902638abe0380b76267304b2155f3206fa84ca34994"
+        }
+      ]
+    },
+    "agent:mark": {
+      "source": {
+        "agent": "claude",
+        "path": ".claude/agents/mark.md",
+        "hash": "a74112ac84070d84fa5c6940fd98f80c0322bf88b41ef6d04e52b6c48ba0ebf8"
+      },
+      "targets": [
+        {
+          "agent": "cursor",
+          "path": ".cursor/agents/mark.md",
+          "generatedHash": "a74112ac84070d84fa5c6940fd98f80c0322bf88b41ef6d04e52b6c48ba0ebf8"
+        },
+        {
+          "agent": "copilot",
+          "path": ".github/agents/mark.agent.md",
+          "generatedHash": "a74112ac84070d84fa5c6940fd98f80c0322bf88b41ef6d04e52b6c48ba0ebf8"
+        },
+        {
+          "agent": "opencode",
+          "path": ".opencode/agents/mark.md",
+          "generatedHash": "a74112ac84070d84fa5c6940fd98f80c0322bf88b41ef6d04e52b6c48ba0ebf8"
+        }
+      ]
+    },
+    "agent:parker": {
+      "source": {
+        "agent": "claude",
+        "path": ".claude/agents/parker.md",
+        "hash": "fefc773fe3b2cdde0ac7631ccfdf06a247ab6a9058233eff94d057124c2408c6"
+      },
+      "targets": [
+        {
+          "agent": "cursor",
+          "path": ".cursor/agents/parker.md",
+          "generatedHash": "fefc773fe3b2cdde0ac7631ccfdf06a247ab6a9058233eff94d057124c2408c6"
+        },
+        {
+          "agent": "copilot",
+          "path": ".github/agents/parker.agent.md",
+          "generatedHash": "fefc773fe3b2cdde0ac7631ccfdf06a247ab6a9058233eff94d057124c2408c6"
+        },
+        {
+          "agent": "opencode",
+          "path": ".opencode/agents/parker.md",
+          "generatedHash": "fefc773fe3b2cdde0ac7631ccfdf06a247ab6a9058233eff94d057124c2408c6"
+        }
+      ]
+    },
+    "agent:sally": {
+      "source": {
+        "agent": "claude",
+        "path": ".claude/agents/sally.md",
+        "hash": "6175d78ef57148abf4130baaf7fe70a1878cf4f38e3487c7df09775d3c1afe68"
+      },
+      "targets": [
+        {
+          "agent": "cursor",
+          "path": ".cursor/agents/sally.md",
+          "generatedHash": "6175d78ef57148abf4130baaf7fe70a1878cf4f38e3487c7df09775d3c1afe68"
+        },
+        {
+          "agent": "copilot",
+          "path": ".github/agents/sally.agent.md",
+          "generatedHash": "6175d78ef57148abf4130baaf7fe70a1878cf4f38e3487c7df09775d3c1afe68"
+        },
+        {
+          "agent": "opencode",
+          "path": ".opencode/agents/sally.md",
+          "generatedHash": "6175d78ef57148abf4130baaf7fe70a1878cf4f38e3487c7df09775d3c1afe68"
+        }
+      ]
+    },
+    "command:format-md": {
+      "source": {
+        "agent": "claude",
+        "path": ".claude/commands/rules/format-md.md",
+        "hash": "8ccdf08a66cee072de6305776e1746db8a240c03cc7dcf106415e2f4119f5e5c"
+      },
+      "targets": [
+        {
+          "agent": "cursor",
+          "path": ".cursor/commands/format-md.md",
+          "generatedHash": "8ccdf08a66cee072de6305776e1746db8a240c03cc7dcf106415e2f4119f5e5c"
+        },
+        {
+          "agent": "copilot",
+          "path": ".github/prompts/format-md.prompt.md",
+          "generatedHash": "8ccdf08a66cee072de6305776e1746db8a240c03cc7dcf106415e2f4119f5e5c"
+        },
+        {
+          "agent": "opencode",
+          "path": ".opencode/commands/format-md.md",
+          "generatedHash": "8ccdf08a66cee072de6305776e1746db8a240c03cc7dcf106415e2f4119f5e5c"
+        }
+      ]
+    }
+  }
+}
