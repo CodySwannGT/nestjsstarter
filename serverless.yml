@@ -58,6 +58,9 @@ custom:
       - 'sequelize'
       # optional @nestjs/graphql require, resolved in try/catch at runtime
       - 'class-transformer/storage'
+      # native addon (prebuilt .node binary) — cannot be bundled, ship as a
+      # runtime node_module instead
+      - '@sentry/profiling-node'
 
 plugins:
   - serverless-esbuild

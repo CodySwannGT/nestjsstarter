@@ -208,6 +208,52 @@ describe("configuration", () => {
 
     expect(config.websocket.apiEndpoint).toBeUndefined();
   });
+
+  it("should default Sentry to inert, offline-safe values", () => {
+    delete process.env.SENTRY_DSN;
+    delete process.env.SENTRY_ENVIRONMENT;
+    delete process.env.STAGE;
+    delete process.env.SENTRY_TRACES_SAMPLE_RATE;
+    delete process.env.SENTRY_PROFILES_SAMPLE_RATE;
+
+    const config = configuration();
+
+    expect(config.sentry.dsn).toBeUndefined();
+    expect(config.sentry.environment).toBe("development");
+    expect(config.sentry.tracesSampleRate).toBe(0);
+    expect(config.sentry.profilesSampleRate).toBe(0);
+  });
+
+  it("should read Sentry DSN, environment, and sample rates from env vars", () => {
+    process.env.SENTRY_DSN = "https://public@sentry.example/1";
+    process.env.SENTRY_ENVIRONMENT = "staging";
+    process.env.SENTRY_TRACES_SAMPLE_RATE = "0.1";
+    process.env.SENTRY_PROFILES_SAMPLE_RATE = "0.2";
+
+    const config = configuration();
+
+    expect(config.sentry.dsn).toBe("https://public@sentry.example/1");
+    expect(config.sentry.environment).toBe("staging");
+    expect(config.sentry.tracesSampleRate).toBeCloseTo(0.1);
+    expect(config.sentry.profilesSampleRate).toBeCloseTo(0.2);
+  });
+
+  it("should fall back to STAGE for Sentry environment", () => {
+    delete process.env.SENTRY_ENVIRONMENT;
+    process.env.STAGE = "production";
+
+    const config = configuration();
+
+    expect(config.sentry.environment).toBe("production");
+  });
+
+  it("should coerce a non-numeric Sentry sample rate to 0", () => {
+    process.env.SENTRY_TRACES_SAMPLE_RATE = "abc";
+
+    const config = configuration();
+
+    expect(config.sentry.tracesSampleRate).toBe(0);
+  });
 });
 
 describe("isLocalEnvironment", () => {

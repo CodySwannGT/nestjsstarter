@@ -1,3 +1,9 @@
+// Initialize Sentry FIRST, before any modules it auto-instruments (http,
+// express, graphql, @nestjs/*) are imported. Inert (no network, no throw)
+// unless SENTRY_DSN is set — preserving zero-config local boot.
+import { initializeSentry } from "./sentry";
+initializeSentry();
+
 /**
  * @file main-local.ts
  * @description Local development entry point for Docker Compose environment

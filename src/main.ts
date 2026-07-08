@@ -2,6 +2,12 @@
 import { initializeXRay } from "./tracing";
 initializeXRay();
 
+// Initialize Sentry in the same early slot, before any modules it
+// auto-instruments (http, express, graphql, @nestjs/*) are imported. Inert
+// (no network, no throw) unless SENTRY_DSN is set.
+import { initializeSentry } from "./sentry";
+initializeSentry();
+
 /**
  * @file main.ts
  * @description Lambda handler entry point for serverless deployment
