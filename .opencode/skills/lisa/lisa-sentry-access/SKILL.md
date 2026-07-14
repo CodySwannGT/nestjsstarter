@@ -1,6 +1,6 @@
 ---
 name: lisa-sentry-access
-description: "Vendor-neutral access layer for Sentry. Sentry-oriented skills MUST delegate through this skill rather than calling Sentry MCP tools, sentry-cli, or REST directly. Resolves Sentry MCP/CLI first when available, then falls back to SENTRY_AUTH_TOKEN + Sentry REST API."
+description: "Vendor-neutral access layer for…"
 allowed-tools: ["Bash", "Read", "Skill"]
 ---
 

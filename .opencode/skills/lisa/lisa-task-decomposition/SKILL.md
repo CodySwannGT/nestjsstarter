@@ -1,6 +1,6 @@
 ---
 name: lisa-task-decomposition
-description: "Methodology for breaking work into ordered tasks. Cross-repo source PRDs and coordination containers stay cross-repo; each buildable leaf task gets a single-repo scope, acceptance criteria, verification type, dependencies, and skills required."
+description: "Methodology for breaking work…"
 ---
 
 # Task Decomposition

@@ -1,6 +1,6 @@
 ---
 name: lisa-jira-create
-description: This skill should be used when creating JIRA epics, stories, and tasks from code files or descriptions. It analyzes the provided input, determines the appropriate issue hierarchy, and creates issues with comprehensive quality requirements including test-first development and documentation.
+description: "creating JIRA epics, stories…"
 allowed-tools: ["Read", "Glob", "LS", "Skill"]
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: lisa-linear-add-journey
-description: "Add a Validation Journey section to an existing Linear Issue by analyzing the change type and generating appropriate verification steps with evidence markers. Linear counterpart of lisa-jira-add-journey."
+description: "Add a Validation Journey…"
 allowed-tools: ["Bash", "Read", "Glob", "Grep", "Skill"]
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: lisa-github-verify
-description: This skill should be used when verifying that a GitHub Issue meets organizational standards for parent-sub-issue relationships and description quality. It fetches the live issue and delegates the gate checks to github-validate-issue so the bar matches what github-write-issue enforces pre-write. The GitHub counterpart of lisa-jira-verify.
+description: "verifying that a GitHub Issue…"
 allowed-tools: ["Skill", "Bash"]
 ---
 

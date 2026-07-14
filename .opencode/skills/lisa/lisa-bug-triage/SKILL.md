@@ -1,6 +1,6 @@
 ---
 name: lisa-bug-triage
-description: "8-step bug triage and implementation workflow. Ensures bugs are reproducible, root-caused, and fixable before implementation begins."
+description: "8-step bug triage and…"
 ---
 
 # Bug Triage

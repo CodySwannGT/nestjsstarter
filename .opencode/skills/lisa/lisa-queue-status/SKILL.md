@@ -1,6 +1,6 @@
 ---
 name: lisa-queue-status
-description: "Read-only operator surface for the current project's PRD and build backlog health. Resolves the configured PRD source and build tracker from the same Lisa contract used by intake and repair, summarizes lifecycle-role counts, distinguishes idle queues from setup problems, and highlights actionable blocked, in-review, claimed, or shipped work."
+description: "Read-only operator surface for…"
 allowed-tools: ["Skill", "Bash", "Read"]
 ---
 

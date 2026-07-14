@@ -1,6 +1,6 @@
 ---
 name: lisa-verify-prd
-description: "Initiative-level PRD acceptance gate. Given a PRD ref/URL (GitHub, Linear, Notion, Confluence, or JIRA), resolves the source vendor, reads the PRD and its generated top-level child work via the prd-lifecycle-rollup contract, and confirms every required child is terminal before any verification runs — if any is non-terminal it reports the incomplete set and STOPS. When the guard passes it runs spec-conformance against the original PRD requirements plus empirical verification via verification-lifecycle. On CONFORMS with all checks passing: transitions the PRD shipped → verified and posts evidence. On PARTIAL/DIVERGES or any failing check: re-opens the PRD shipped → ticketed (NEVER blocked), creates build-ready fix tickets for each divergence, and posts a product-readable failure report — the fix tickets auto-build, rollup re-ships the PRD, and a later intake cycle re-verifies, so the loop closes itself. Idempotent re-runs: comments regenerate in place via sentinel markers; fix tickets dedupe by stable ref."
+description: "Initiative-level PRD acceptance…"
 allowed-tools: ["Skill", "Bash", "Read", "mcp__claude_ai_Notion__notion-fetch", "mcp__claude_ai_Notion__notion-get-comments", "mcp__atlassian__getConfluencePage", "mcp__atlassian__getConfluencePageDescendants", "mcp__atlassian__getJiraIssue", "mcp__atlassian__searchJiraIssuesUsingJql", "mcp__atlassian__getAccessibleAtlassianResources"]
 ---
 

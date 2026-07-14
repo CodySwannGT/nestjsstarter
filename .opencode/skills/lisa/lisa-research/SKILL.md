@@ -1,6 +1,6 @@
 ---
 name: lisa-research
-description: "Research a problem space and create a PRD in the configured PRD source. Investigates the codebase, defines user flows, assesses technical feasibility, synthesizes the spec, then creates it in the source (Notion / Confluence / GitHub / Linear per .lisa.config.json `source`) via lisa-prd-source-write — there is no loose document artifact. Vendor-agnostic. Accepts an optional `prd_ready` flag (default false → the PRD is created in the `draft` role; true → created `ready` so lisa-intake auto-claims it) and an optional dedupe `marker`/`dedupe_key` (used when invoked by lisa-project-ideation) so re-runs reference the existing PRD instead of duplicating it."
+description: "Research a problem space and…"
 allowed-tools: ["Skill", "Bash", "Read", "Glob", "Grep"]
 ---
 
@@ -25,7 +25,9 @@ Produce a PRD for the problem in `$ARGUMENTS`, then create it in the configured 
 
 ## Orchestration: agent team
 
-If you are NOT already operating inside an agent team (no prior successful team-creation or subagent-delegation tool call in this session, not spawned into a team context), the very first thing you do is establish team orchestration.
+You are "inside an agent team" only if you are yourself a spawned teammate or subagent — you were spawned into a team context, or your context names a team lead you report to. A lead/root session that has previously spawned subagents is still the lead and retains full authority to create this flow's team.
+
+If you are NOT inside an agent team by that definition, the very first thing you do is establish team orchestration.
 
 Use the team tool for the current runtime:
 

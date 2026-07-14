@@ -1,6 +1,6 @@
 ---
 name: ops-performance
-description: Performance analysis for Expo + serverless backend projects. Runs Lighthouse audits, bundle size analysis, and k6 load tests.
+description: "Performance analysis for Expo +…"
 allowed-tools:
   - Bash
   - Read

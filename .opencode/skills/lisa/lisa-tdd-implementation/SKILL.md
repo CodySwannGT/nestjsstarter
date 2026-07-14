@@ -1,6 +1,6 @@
 ---
 name: lisa-tdd-implementation
-description: "Test-Driven Development implementation workflow. RED: write failing test, GREEN: minimum code to pass, REFACTOR: clean up. Includes task metadata requirements, verification, and atomic commit practices."
+description: "Test-Driven Development…"
 ---
 
 # TDD Implementation

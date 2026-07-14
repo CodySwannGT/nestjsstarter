@@ -1,6 +1,6 @@
 ---
 name: lisa-git-submit-pr
-description: This skill should be used when pushing changes and creating or updating a pull request. It verifies the branch state, pushes to remote, creates or updates a PR with a comprehensive description, optionally coordinates the resulting Pull Request into the configured GitHub ProjectV2, and enables auto-merge.
+description: "pushing changes and creating or…"
 allowed-tools: ["Bash", "Skill", "mcp__github__create_pull_request", "mcp__github__get_pull_request", "mcp__github__update_pull_request"]
 ---
 

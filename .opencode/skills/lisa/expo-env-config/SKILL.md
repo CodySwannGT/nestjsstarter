@@ -1,6 +1,6 @@
 ---
 name: expo-env-config
-description: This skill should be used when creating, modifying, or accessing environment variables in this Expo/React Native codebase. It enforces type-safe, validated environment configuration using Zod schemas. Use this skill when adding new environment variables, setting up env validation, or writing code that reads from process.env.
+description: "creating, modifying, or…"
 ---
 
 # Expo Environment Configuration

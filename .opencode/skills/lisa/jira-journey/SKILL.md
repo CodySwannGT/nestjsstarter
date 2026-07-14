@@ -1,6 +1,6 @@
 ---
 name: jira-journey
-description: "Parse a JIRA ticket's Validation Journey section, execute the verification steps, capture evidence, and post to JIRA + GitHub PR using the jira-evidence skill."
+description: "Parse a JIRA ticket's…"
 ---
 
 # JIRA Validation Journey

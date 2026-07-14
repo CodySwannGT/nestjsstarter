@@ -1,6 +1,6 @@
 ---
 name: lisa-wiki-add-role
-description: Scaffold a domain-expert "digital staff" role over the wiki — a dual-runtime subagent (Claude + Codex) plus a staff doc page — from a config.staff[] entry. Use when a project wants a role-scoped expert (e.g. Legal, Finance, Sales) whose knowledge is a slice of the wiki. The plugin only SETS UP the subagent; whether it is ever invoked, scheduled, or routed is out of scope.
+description: "Scaffold a domain-expert…"
 ---
 
 # lisa-wiki-add-role

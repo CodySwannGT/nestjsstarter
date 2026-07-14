@@ -1,7 +1,6 @@
 ---
 name: atomic-design-gluestack
-description: |
-  Enforces atomic design methodology (atoms, molecules, organisms, templates, pages) for React Native/Expo projects using Gluestack UI. This skill should be used when creating new components, validating existing component organization, reviewing component placement decisions, or planning component architecture. Use this skill to ensure components are properly categorized, placed in correct directories, and follow composition patterns appropriate to their atomic level.
+description: "Enforces atomic design…"
 ---
 
 # Atomic Design with Gluestack UI

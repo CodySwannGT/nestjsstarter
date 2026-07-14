@@ -1,6 +1,6 @@
 ---
 name: ops-verify-telemetry
-description: Verify OpenTelemetry traces are being collected and exported to AWS X-Ray for Rails applications. Check collector health, trace export, and CloudWatch metrics.
+description: "Verify OpenTelemetry traces are…"
 allowed-tools:
   - Bash
   - Read

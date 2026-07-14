@@ -1,6 +1,6 @@
 ---
 name: lisa-root-cause-analysis
-description: "Root cause analysis methodology. Evidence gathering from logs, execution path tracing, strategic log placement, and building irrefutable proof chains."
+description: "Root cause analysis methodology"
 ---
 
 # Root Cause Analysis

@@ -1,6 +1,6 @@
 ---
 name: lisa-agent-design-best-practices
-description: Best practices for designing Claude Code agent files (.claude/agents/*.md). This skill should be used when writing or reviewing agent markdown files to ensure proper design with focused domains, correct tool access, reusable definitions, and separation of capabilities from lifecycle. Combines Anthropic's official guidance with battle-tested patterns from agent team usage.
+description: "Best practices for designing…"
 ---
 
 # Agent Design Best Practices

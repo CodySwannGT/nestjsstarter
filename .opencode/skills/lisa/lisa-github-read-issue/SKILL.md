@@ -1,6 +1,6 @@
 ---
 name: lisa-github-read-issue
-description: "Fetches the full scope of a GitHub Issue — metadata, body sections, all comments, native sub-issue parent and children, linked PRs, related issues parsed from `Blocks/Blocked by/Relates to/Duplicates/Cloned from` lines, and any cross-repo references. Produces a consolidated context bundle that downstream agents consume so they never act on an issue in isolation. The GitHub counterpart of lisa-jira-read-ticket."
+description: "Fetches the full scope of a…"
 allowed-tools: ["Bash", "Skill"]
 ---
 

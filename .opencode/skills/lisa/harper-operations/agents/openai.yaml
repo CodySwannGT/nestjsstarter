@@ -1,4 +1,4 @@
 display_name: "Harper Operations"
-short_description: "operating, monitoring, or debugging a Harper (HarperDB/Fabric) component after it builds or deploys - Operations API calls, component…"
+short_description: "operating, monitoring, or…"
 default_prompt:
-  - "Use $harper-operations: operating, monitoring, or debugging a Harper (HarperDB/Fabric) component after it builds or deploys - Operations API calls, component…."
+  - "Use $harper-operations: operating, monitoring, or…."

@@ -1,6 +1,6 @@
 ---
 name: nestjs-graphql
-description: Comprehensive guide for NestJS GraphQL development using Apollo and code-first approach. This skill should be used when writing GraphQL resolvers, mutations, queries, types, subscriptions, or implementing advanced features like field middleware, complexity limits, and custom scalars. Also covers project-specific patterns including zero-trust auth decorators and DataLoader integration.
+description: "Comprehensive guide for NestJS…"
 ---
 
 # NestJS GraphQL Development Guide

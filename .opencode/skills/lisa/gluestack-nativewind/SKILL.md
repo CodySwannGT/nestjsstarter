@@ -1,6 +1,6 @@
 ---
 name: gluestack-nativewind
-description: This skill enforces Gluestack UI v3 and NativeWind v4 design patterns for consistent, performant, and maintainable styling. It should be used when creating or reviewing components, fixing styling issues, or refactoring styles to follow the constrained design system.
+description: "This skill enforces Gluestack…"
 ---
 
 # Gluestack NativeWind Design Patterns

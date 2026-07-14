@@ -1,6 +1,6 @@
 ---
 name: lisa-setup-linear
-description: "Configure Linear as the destination tracker and/or the PRD source for this project. Verifies Linear access (MCP OAuth or a personal API key in OS keychain), resolves the workspace slug and team key, scaffolds the build-queue issue-label namespace (`status:*`) when Linear is the tracker and/or the PRD-lifecycle project-label namespace (`prd-*` + issue-level sentinel) when Linear is the PRD source, writes the `linear` section into `.lisa.config.json`, and offers to set top-level `tracker: \"linear\"` and/or `source: \"linear\"`. Idempotent — re-running updates the existing section and reuses existing labels. No /lisa:setup:atlassian prerequisite."
+description: "Configure Linear as the…"
 allowed-tools: ["Bash", "Read", "Write", "Edit", "Skill", "AskUserQuestion", "mcp__linear-server__authenticate", "mcp__linear-server__complete_authentication"]
 ---
 
@@ -156,7 +156,7 @@ read_role() {  # $1=namespace (build|prd) $2=role $3=default
 
 Probe with `lisa-linear-access operation: list-issue-labels` (scoped to the team). For each role's resolved name, create it via `lisa-linear-access operation: create-issue-label` only if absent. The `done` role is env-keyed — create all three defaults; collapse to a single string in config later if the project's terminal state is env-independent.
 
-| Role | Default | 
+| Role | Default |
 |------|---------|
 | `ready` | `status:ready` |
 | `claimed` | `status:in-progress` |

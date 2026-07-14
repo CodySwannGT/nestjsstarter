@@ -1,6 +1,6 @@
 ---
 name: lisa-monitor
-description: "Monitor application health AND audit observability completeness for the current repo, then file build-ready tickets for what it finds. Checks health endpoints, recent logs (CloudWatch / Sentry / browser console), error-rate spikes, performance hotspots, pending migrations, and Playwright smoke flows via the stack-specific ops-specialist (Expo, Rails) or stack-agnostic base probing (any stack, incl. NestJS / CDK). Audits the repo against an observability-completeness rubric scoped to its type (frontend / backend / infra) and flags instrumentation gaps (e.g. no distributed tracing, no DB/query analytics). For each high-signal anomaly and each in-scope missing dimension it files a single-repo, build-ready leaf ticket via tracker-write (idempotent, capped, repo-scoped) so the intake cron implements it — monitor files only, it never fixes. Manual (no cron); files by default, `--dry-run` previews. Conservative by default. Also invoked as the post-deploy step of lisa-verify, where it runs report-only (never files)."
+description: "Monitor application health AND…"
 allowed-tools: ["Skill", "Bash", "Read", "Grep", "Glob"]
 ---
 
@@ -17,7 +17,9 @@ Spot-check application health, **audit observability completeness**, and **file 
 
 ## Orchestration: agent team
 
-If you are NOT already operating inside an agent team (no prior successful team-creation or subagent-delegation tool call in this session, not spawned into a team context), the very first thing you do is establish team orchestration.
+You are "inside an agent team" only if you are yourself a spawned teammate or subagent — you were spawned into a team context, or your context names a team lead you report to. A lead/root session that has previously spawned subagents is still the lead and retains full authority to create this flow's team.
+
+If you are NOT inside an agent team by that definition, the very first thing you do is establish team orchestration.
 
 Use the team tool for the current runtime:
 

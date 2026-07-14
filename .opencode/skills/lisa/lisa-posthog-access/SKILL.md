@@ -1,6 +1,6 @@
 ---
 name: lisa-posthog-access
-description: "Vendor-neutral access layer for PostHog. PostHog skills and observability rules MUST delegate through this skill rather than calling PostHog MCP tools or REST directly. Resolves PostHog MCP first when available, then falls back to POSTHOG_PERSONAL_API_KEY bearer auth."
+description: "Vendor-neutral access layer for…"
 allowed-tools: ["Bash", "Read", "Skill"]
 ---
 
