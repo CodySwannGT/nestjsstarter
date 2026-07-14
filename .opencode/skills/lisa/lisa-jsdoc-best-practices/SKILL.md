@@ -1,6 +1,6 @@
 ---
 name: lisa-jsdoc-best-practices
-description: Enforces JSDoc documentation standards for this TypeScript project. This skill should be used when writing or reviewing TypeScript code to ensure proper documentation with file preambles, function docs, interface docs, and the critical distinction between documenting "what" vs "why". Use this skill to understand the project's JSDoc ESLint rules and established patterns.
+description: "Enforces JSDoc documentation…"
 ---
 
 # JSDoc Best Practices

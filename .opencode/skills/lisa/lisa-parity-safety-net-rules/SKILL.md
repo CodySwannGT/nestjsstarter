@@ -1,6 +1,6 @@
 ---
 name: lisa-parity-safety-net-rules
-description: "View, set, and verify the custom guard rules enforced by Lisa's safety-net PreToolUse Bash hook (parity-safety-net.sh). The consolidated cross-agent equivalent of the upstream safety-net plugin's set-custom-rules + verify-custom-rules skills — manages a project-local list of extended-regex patterns that block destructive shell commands, on Codex, agy, Copilot, Cursor, and Claude."
+description: "View, set, and verify the…"
 allowed-tools: ["Read", "Edit", "Write", "Bash"]
 synced-from: safety-net@cc-marketplace@0.9.0
 ---

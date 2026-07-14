@@ -1,6 +1,6 @@
 ---
 name: lisa-atlassian-access
-description: "Vendor-neutral access layer for Atlassian (JIRA + Confluence). Every jira-* and confluence-* skill MUST delegate through this skill rather than calling Atlassian directly. Resolves a substrate per operation, binding JIRA writes to the configured cloudId via Atlassian REST whenever token auth is available and using acli only for reads or as a guarded fallback. For non-write acli operations, acli is used when installed and switchable to a profile matching the configured site; mismatched active profiles are skipped only after switch plus re-verification fails."
+description: "Vendor-neutral access layer for…"
 allowed-tools: ["Bash", "Read", "Skill"]
 ---
 

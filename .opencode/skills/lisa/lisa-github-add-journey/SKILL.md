@@ -1,6 +1,6 @@
 ---
 name: lisa-github-add-journey
-description: "Add a Validation Journey section to an existing GitHub Issue by analyzing the change type and generating appropriate verification steps with evidence markers. The GitHub counterpart of lisa-jira-add-journey."
+description: "Add a Validation Journey…"
 allowed-tools: ["Bash", "Skill"]
 ---
 

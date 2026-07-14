@@ -1,6 +1,6 @@
 ---
 name: lisa-github-create
-description: This skill should be used when creating GitHub Issue Epics, Stories, and Sub-tasks from code files or descriptions. It analyzes the provided input, determines the appropriate issue hierarchy, and creates issues with comprehensive quality requirements including test-first development and documentation. The GitHub counterpart of lisa-jira-create.
+description: "creating GitHub Issue Epics…"
 allowed-tools: ["Read", "Glob", "LS", "Skill", "Bash"]
 ---
 

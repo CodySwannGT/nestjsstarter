@@ -1,6 +1,6 @@
 ---
 name: ops-verify-health
-description: Health check all services across environments. Checks frontend URLs, backend GraphQL endpoints, and reports response times.
+description: "Health check all services…"
 allowed-tools:
   - Bash
   - Read

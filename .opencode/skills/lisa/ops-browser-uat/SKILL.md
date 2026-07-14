@@ -1,6 +1,6 @@
 ---
 name: ops-browser-uat
-description: Browser-based user acceptance testing via Playwright MCP tools. Logs into the application, navigates through features, and captures visual proof with screenshots.
+description: "Browser-based user acceptance…"
 allowed-tools:
   - Bash
   - Read

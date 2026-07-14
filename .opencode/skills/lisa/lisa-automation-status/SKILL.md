@@ -1,6 +1,6 @@
 ---
 name: lisa-automation-status
-description: "Read-only operator surface for the current project's Lisa automation fleet. Resolves the expected recurring jobs from the same setup-automations contract Lisa uses to create them, inspects the active runtime scheduler (Codex automations or Claude /schedule), compares live command/cadence/queue arguments against the expected contract, and reports grouped fleet health such as healthy, missing, unsupported, drifted, stale, or failing with remediation guidance."
+description: "Read-only operator surface for…"
 allowed-tools: ["Skill", "Bash", "Read"]
 ---
 
@@ -23,6 +23,7 @@ Inspect only the Lisa automation fleet for the current project:
 - `intake-tickets`
 - `exploratory-bugs` when the current stack supports `exploratory-qa`
 - `exploratory-prds`
+- `monitor`
 
 Resolve the expected project identifier, fleet naming prefix, queue arguments, cadence, and stack-support rules from the same contract used by `setup-automations` and `tear-down-automations`. Do **not** invent a second source of truth for fleet naming or queue resolution.
 

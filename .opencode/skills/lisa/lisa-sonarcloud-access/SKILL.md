@@ -1,6 +1,6 @@
 ---
 name: lisa-sonarcloud-access
-description: "Vendor-neutral access layer for SonarCloud/SonarQube Cloud. Sonar triage skills MUST delegate through this skill rather than calling Sonar MCP tools or REST directly. Resolves Sonar MCP first when available, then falls back to SONAR_TOKEN + SonarCloud Web API."
+description: "Vendor-neutral access layer for…"
 allowed-tools: ["Bash", "Read", "Skill"]
 ---
 

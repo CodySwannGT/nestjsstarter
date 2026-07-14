@@ -1,6 +1,6 @@
 ---
 name: lisa-security-review
-description: "Security review methodology. STRIDE threat modeling, OWASP Top 10 vulnerability checks, auth/validation/secrets handling review, and mitigation recommendations."
+description: "Security review methodology"
 ---
 
 # Security Review

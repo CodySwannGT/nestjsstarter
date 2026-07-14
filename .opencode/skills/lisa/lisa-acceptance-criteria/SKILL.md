@@ -1,6 +1,6 @@
 ---
 name: lisa-acceptance-criteria
-description: "Acceptance criteria definition. Gherkin user flows (Given/When/Then), error states, UX concerns, and empirical verification from the user perspective."
+description: "Acceptance criteria definition"
 ---
 
 # Acceptance Criteria

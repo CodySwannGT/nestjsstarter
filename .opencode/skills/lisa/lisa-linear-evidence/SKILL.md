@@ -1,6 +1,6 @@
 ---
 name: lisa-linear-evidence
-description: "Uploads text evidence to the GitHub `pr-assets` release, updates the PR description, posts a comment on the originating Linear Issue with code blocks, and transitions the Issue from the configured `claimed` label to the configured `review` label. Reusable by any skill that captures evidence and generates evidence/comment.txt + evidence/code-blocks.md. Linear counterpart of lisa-jira-evidence and lisa-github-evidence."
+description: "Uploads text evidence to the…"
 allowed-tools: ["Bash", "Skill"]
 ---
 

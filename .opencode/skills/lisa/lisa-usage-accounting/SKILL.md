@@ -1,6 +1,6 @@
 ---
 name: lisa-usage-accounting
-description: "Shared usage-ledger utility for Lisa lifecycle flows and artifact writers. Delegates all direct-entry recording and rollup refreshes through one vendor-neutral contract so PRDs, tickets, evidence comments, PRs, and markdown artifacts preserve the canonical `## Lisa Usage` section instead of inventing per-flow formats."
+description: "Shared usage-ledger utility for…"
 allowed-tools: ["Skill", "Read", "Bash"]
 ---
 

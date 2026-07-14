@@ -1,6 +1,6 @@
 ---
 name: ops-db-ops
-description: Database migrations, reverts, schema generation, and GraphQL codegen for Expo + serverless backend projects. Operates on the backend (TypeORM) and frontend (GraphQL code generation).
+description: "Database migrations, reverts…"
 allowed-tools:
   - Bash
   - Read

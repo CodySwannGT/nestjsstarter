@@ -1,6 +1,6 @@
 ---
 name: lisa-jira-add-journey
-description: "Add a Validation Journey section to an existing JIRA ticket by analyzing the change type and generating appropriate verification steps with evidence markers."
+description: "Add a Validation Journey…"
 ---
 
 # Add Validation Journey to Existing JIRA Ticket

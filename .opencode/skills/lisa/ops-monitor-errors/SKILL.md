@@ -1,6 +1,6 @@
 ---
 name: ops-monitor-errors
-description: Monitor Sentry for unresolved errors in frontend and backend projects. Supports filtering by project, environment, and time range.
+description: "Monitor Sentry for unresolved…"
 allowed-tools:
   - Bash
   - Read

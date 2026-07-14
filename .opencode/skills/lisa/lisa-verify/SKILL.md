@@ -1,6 +1,6 @@
 ---
 name: lisa-verify
-description: "Ship and verify code. Commits any pending changes, opens or updates the PR, handles the review loop, merges when green, monitors the deploy, and runs remote verification (health checks, Validation Journey replay, Sentry/log inspection) in the target environment. Folds in the legacy /ship alias."
+description: "Ship and verify code"
 allowed-tools: ["Skill", "Bash", "Read", "Grep", "Glob"]
 ---
 
@@ -10,7 +10,9 @@ Ship the current branch and prove it works in the target environment.
 
 ## Orchestration: agent team
 
-If you are NOT already operating inside an agent team (no prior successful team-creation or subagent-delegation tool call in this session, not spawned into a team context), the very first thing you do is establish team orchestration.
+You are "inside an agent team" only if you are yourself a spawned teammate or subagent — you were spawned into a team context, or your context names a team lead you report to. A lead/root session that has previously spawned subagents is still the lead and retains full authority to create this flow's team.
+
+If you are NOT inside an agent team by that definition, the very first thing you do is establish team orchestration.
 
 Use the team tool for the current runtime:
 

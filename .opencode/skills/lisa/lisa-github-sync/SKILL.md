@@ -1,6 +1,6 @@
 ---
 name: lisa-github-sync
-description: "Syncs plan progress to a linked GitHub Issue. Posts plan contents, progress updates, branch links, and PR links at key milestones. Use this skill throughout the plan lifecycle to keep issues in sync. The GitHub counterpart of lisa-jira-sync."
+description: "Syncs plan progress to a linked…"
 allowed-tools: ["Bash", "Read", "Glob", "Grep"]
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: lisa-sync-down
-description: This skill should be used to run a back-sync of an environment branch DOWN the deploy chain on demand — propagating merges (e.g. hotfixes) from a higher environment to every lower one. Given a source environment name or branch (e.g. `production`), it derives the source→target chain from `.lisa.config.json` `deploy.order` + `deploy.branches` (the same chain the `claude-sync-down-branches.yml` GitHub Action uses on PR merge), then for each downward hop creates a sync branch, merges, resolves conflicts, opens or updates a PR, and enables auto-merge. Runnable by a developer locally or by GitHub Actions.
+description: "run a back-sync of an…"
 allowed-tools: ["Bash", "Read", "Edit", "Write", "Grep", "Glob"]
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: lisa-reproduce-bug
-description: "How to create reliable bug reproduction scenarios. Covers failing tests, minimal scripts, environment verification, and reproduction evidence capture."
+description: "How to create reliable bug…"
 ---
 
 # Reproduce Bug

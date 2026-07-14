@@ -1,6 +1,6 @@
 ---
 name: lisa-jam-access
-description: "Vendor-neutral access layer for Jam. Jam triage rules and skills MUST delegate through this skill rather than calling Jam MCP tools directly. Resolves Jam MCP first when available, then falls back to the JAM_PAT-authenticated Jam CLI for headless routines."
+description: "Vendor-neutral access layer for…"
 allowed-tools: ["Bash", "Read", "Skill"]
 ---
 

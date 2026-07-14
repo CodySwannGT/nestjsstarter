@@ -1,6 +1,6 @@
 ---
 name: lisa-verification-lifecycle
-description: "Verification lifecycle: confirm quality gates, classify types, discover tools, fail fast, plan, execute, codify (turn each passing verification into a regression test), spec conformance (verify shipped work matches the spec), loop. Quality gates (tests/typecheck/lint) are prerequisites, NOT verification. Verification means running the actual system and observing results."
+description: "Verification lifecycle: confirm…"
 ---
 
 # Verification Lifecycle

@@ -1,6 +1,6 @@
 ---
 name: lisa-linear-access
-description: "Vendor-neutral access layer for Linear. Linear skills MUST delegate through this skill rather than calling Linear MCP tools or Linear GraphQL directly. Resolves Linear MCP first when authenticated, then falls back to LINEAR_API_KEY + Linear GraphQL in headless environments."
+description: "Vendor-neutral access layer for…"
 allowed-tools: ["Bash", "Read", "Skill"]
 ---
 
