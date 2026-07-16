@@ -2,7 +2,7 @@
   "devDependencies": {
     "@anatine/esbuild-decorators": "^0.2.19",
     "@ast-grep/cli": "^0.44.1",
-    "@codyswann/lisa": "2.210.0",
+    "@codyswann/lisa": "^2.217.1",
     "@commitlint/cli": "^21.2.1",
     "@commitlint/config-conventional": "^21.2.0",
     "@eslint-community/eslint-plugin-eslint-comments": "^4.7.2",
